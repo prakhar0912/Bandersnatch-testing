@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="" method="post">
+        <input type="text">
+        <input type="text">
+        <button id="submit">Sign In</button>
+    </form>
+    <script>
+        let but = document.querySelector("#submit");
+        but.addEventListener("click", signin);
+        function signin(e) {
+            e.preventDefault();
+            let email = document.querySelectorAll("input")[0].value;
+            let pass = document.querySelectorAll("input")[1].value;
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            var raw = JSON.stringify({ "email": "prakhar0912@gmail.com", "password": "nice.com" });
+
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
+
+            fetch("https://playscenario.dscvit.com/api/bandersnatch/signin", requestOptions)
+                .then(response => response.json())
+                .then(result => {
+                    console.log(result);
+                    sessionStorage.setItem("auth_key", result["token"])
+                    console.log(sessionStorage.getItem("auth_key"))
+                    play();
+                })
+                .catch(error => console.log('error', error));
+        }
+    </script>
+</body>
+
+</html>
