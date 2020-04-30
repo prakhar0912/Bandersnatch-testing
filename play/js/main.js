@@ -89,7 +89,7 @@ let Intenthas = (intent) => {
 
 
 /* Sentence Class: End */
-let text1 = new sentence("")
+let text1 = new sentence("open the door using the keys")
 console.log(text1._intent)
 
 /* Generating Intent JSON */
