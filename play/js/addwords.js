@@ -6,6 +6,8 @@ nlp.extend((text, world) =>{
         'fucking': 'Adjective',
         'get through': 'Verb',
         'joker card': 'Noun', 
-        'inspect': "Verb"
+        'inspect': "Verb",
+        'doorknob': 'Noun',
+        'insert': 'Verb',
     });
 })
