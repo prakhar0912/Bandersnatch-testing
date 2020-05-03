@@ -1,5 +1,5 @@
 let synonyms = {
-    'open': ["go through", 'leave', 'get through', 'twist'],
+    'open': ["go through", 'leave', 'get through', 'twist', "enter"],
     'lay': ["lie down", 'rest'],
     'jump': ["bounce"],
     //inspect verbs
