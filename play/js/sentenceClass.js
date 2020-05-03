@@ -7,9 +7,21 @@ class sentence {
         this._Editedtext.toLowerCase();
         this._text = replacer(this._Editedtext);
         this._intent = intentArray(this._text)
-
+        this._hasAnd = hasAnd(this._text);
     }
 }
+
+
+let hasAnd = (text) => {
+    let terms = text.terms().out("array")
+    for(let i = 0; i < terms.length; i++){
+        if(terms[i] == "and"){
+            return true;
+        }
+    }
+    return false;
+}
+
 
 
 let ifIn = (term, list) => {
@@ -77,7 +89,7 @@ function intentArray(text) {
     let verbsjson = text.verbs().json();
     verbsjson.forEach(ele => {
         if (ele.isNegative) {
-            console.log(ele)
+            // console.log(ele)
             terms.forEach((elem, i) => {
                 if (elem == ele.terms[0].text) {
                     if (searchCheck(terms, i, ele.terms)) {
@@ -91,7 +103,7 @@ function intentArray(text) {
     // console.log(nouns, verbs, adjs)
     let intent = [];
     let masterIntent = [];
-    for (let i = terms.length - 1; i >= 0; i--) {
+    for (let i = 0; i < terms.length; i++) {
         if (ifIn(terms[i], nouns)) {
             let noun = [terms[i], "noun"];
             /* console.log("noun") */
@@ -107,9 +119,9 @@ function intentArray(text) {
             intent.push(verb);
         }
         if (Intenthas(intent)) {
-            masterIntent.push(intent.reverse())
+            masterIntent.push(intent)
             intent = [];
         }
     }
-    return (masterIntent.reverse())
+    return (masterIntent)
 }

@@ -111,32 +111,75 @@ let extractInfo = (data) => {
 
 let compare = (arr1, arr2) => {
     // console.log(arr1, arr2)
+    if(arr1.length != arr2.length){
+        return false;
+    }
     let masterFlag = 0;
-    for (let i = 0; i < arr1.length; i++) {
-        let flag = 0;
-        for (let j = 0; j < arr1[i].length; j++) {
-            // console.log(arr1[i][j][0], arr2[i][j][0])
-            if (arr1[i][j][0] == arr2[i][j][0]) {
-                flag++;
+    if (arr1.length == 1) {
+        for (let i = 0; i < arr1.length; i++) {
+            let flag = 0;
+            for (let j = 0; j < arr1[i].length; j++) {
+                // console.log(arr1[i][j][0], arr2[i][j][0])
+                if (arr1[i][j][0] == arr2[i][j][0]) {
+                    flag++;
+                }
+            }
+            // console.log(flag, arr1[i])
+            if (flag == (arr1[i].length)) {
+                masterFlag++;
             }
         }
-        // console.log(flag, arr1[i])
-        if (flag == (arr1[i].length)) {
-            masterFlag++;
+        // if(arr1.length == 1){
+        //     if(masterFlag == 1){
+        //         return true;
+        //     }
+        //     else{
+        //         return false;
+        //     }
+        // }
+        if (masterFlag == (arr1.length)) {
+            return true;
         }
+        return false;
     }
-    // if(arr1.length == 1){
-    //     if(masterFlag == 1){
-    //         return true;
-    //     }
-    //     else{
-    //         return false;
-    //     }
-    // }
-    if (masterFlag == (arr1.length)) {
-        return true;
+    else{
+        for (let i = 0; i < arr1.length; i++) {
+            let flag = 0;
+            for (let j = 0; j < arr1[i].length; j++) {
+                // console.log(arr1[i][j][0], arr2[i][j][0])
+                if (arr1[i][j][0] == arr2[i][j][0]) {
+                    flag++;
+                }
+            }
+            // console.log(flag, arr1[i])
+            if (flag == (arr1[i].length)) {
+                masterFlag++;
+            }
+        }
+        if (masterFlag == (arr1.length)) {
+            return true;
+        }
+        arr1.reverse();
+        for (let i = 0; i < arr1.length; i++) {
+            let flag = 0;
+            for (let j = 0; j < arr1[i].length; j++) {
+                // console.log(arr1[i][j][0], arr2[i][j][0])
+                if (arr1[i][j][0] == arr2[i][j][0]) {
+                    flag++;
+                }
+            }
+            // console.log(flag, arr1[i])
+            if (flag == (arr1[i].length)) {
+                masterFlag++;
+            }
+        }
+        if (masterFlag == (arr1.length)) {
+            return true;
+        }
+
+        return false;
     }
-    return false;
+
 }
 
 
@@ -214,18 +257,21 @@ let nounMaster = () => {
 
 
 let validateInput = (intent) => {
-    console.log(intent)
+    // console.log(intent)
+    if (intent.length == 0 || intent[0].length == 0) {
+        output("please use a verb and a noun to describe what you want your character to do");
+        return false;
+    }
+    if (userIntent._hasAnd == true) {
+        output("and in the input please have a command at a time")
+        return false;
+    }
     if (intent[0][0] == "inspect") {
         if (intent.length != 1) {
-            console.log("not one")
-            return false;
-        }
-        else {
-            // return true;
             return false;
         }
     }
-    return false;
+    return true;
 }
 
 
@@ -241,7 +287,7 @@ let validateInput = (intent) => {
 let processInput = (input) => {
     userInput = input;
     userIntent = new sentence(userInput);
-    console.log(userIntent._intent)
+    console.log("Users Intent: ",userIntent._intent)
     if (validateInput(userIntent._intent)) {
         userIntent._intent.forEach(ele => {
             let pushing = "";
@@ -258,7 +304,7 @@ let processInput = (input) => {
         nounMaster();
 
     }
-    else{
+    else {
         resetForNewInput();
     }
 }
@@ -290,7 +336,11 @@ let resetVariables = () => {
 
 let inputDiv = document.querySelector(".user_input");
 let submit = document.querySelector(".submit")
-submit.addEventListener("click", () => { processInput(inputDiv.value) });
+submit.addEventListener("click", (e) => {
+    e.preventDefault();
+    processInput(inputDiv.value);
+    inputDiv.value = "";
+});
 
 
 
