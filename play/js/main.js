@@ -1,3 +1,33 @@
+let masterData;
+let option1Text;
+let option2Text;
+let nouns;
+let mainDescription;
+let mainTitle;
+let option1;
+let option2;
+let options;
+let userInput;
+let userIntent;
+let userNouns = [];
+let descs;
+
+
+
+
+let output = (text) => {
+    console.log(text)
+}
+
+
+
+
+
+
+
+
+
+
 let play = () => {
     var myHeaders = new Headers();
     myHeaders.append("Authorization", sessionStorage.getItem("auth_key"))
@@ -14,85 +44,189 @@ let play = () => {
 
     fetch("https://playscenario.dscvit.com/api/bandersnatch/play", requestOptions)
         .then(response => response.json())
-        .then(result => console.log(result))
+        .then(result => {
+            extractInfo(result);
+        })
         .catch(error => console.log('error', error));
 }
-/* play(); */
+play();
 
+let chooseOption = (data) => {
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", sessionStorage.getItem("auth_key"));
+    myHeaders.append("Content-Type", "application/json");
 
-/* Sentence Class */
+    var raw = JSON.stringify({ "option": data });
 
-class sentence {
-    constructor(text) {
-        this._mainText = text;
-        this._UnEditedtext = nlp(text);
-        this._UnEditedtext.contractions().expand();
-        this._text = replacer(this._UnEditedtext);
-        this._intent = intentArray(this._text)
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
 
-    }
+    fetch("https://playscenario.dscvit.com/api/bandersnatch/play", requestOptions)
+        .then(response => response.json())
+        .then(result => {
+            console.log(result)
+            resetVariables();
+            extractInfo(result);
+        })
+        .catch(error => console.log('error', error));
 }
 
 
-let ifIn = (term, list) => {
-    for(let i = 0; i < list.length; i++){
-        if(term == list[i]){
-            return true;
+
+
+
+
+
+
+let optionsIntent = () => {
+    option1 = new sentence(option1Text)
+    console.log("Option 1 Intent: ", option1._intent);
+    option2 = new sentence(option2Text)
+    console.log("Option 2 Intent: ", option2._intent)
+    options = [option1, option2];
+}
+
+
+
+
+
+
+
+let extractInfo = (data) => {
+    masterData = data["data"];
+    console.log(masterData)
+    mainDescription = masterData["content"];
+    mainTitle = masterData["misc"]["title"];
+    option1Text = masterData["misc"]["left_option"];
+    option2Text = masterData["misc"]["right_option"];
+    nouns = masterData["misc"]["descriptions"];
+    console.log(mainDescription)
+    optionsIntent();
+}
+
+
+let compare = (arr1, arr2) => {
+    // console.log(arr1, arr2)
+    let masterFlag = 0;
+    for (let i = 0; i < arr1.length; i++) {
+        let flag = 0;
+        for (let j = 0; j < arr1[i].length; j++) {
+            // console.log(arr1[i][j][0], arr2[i][j][0])
+            if (arr1[i][j][0] == arr2[i][j][0]) {
+                flag++;
+            }
+        }
+        // console.log(flag, arr1[i])
+        if (flag == (arr1[i].length)) {
+            masterFlag++;
+        }
+    }
+    // if(arr1.length == 1){
+    //     if(masterFlag == 1){
+    //         return true;
+    //     }
+    //     else{
+    //         return false;
+    //     }
+    // }
+    if (masterFlag == (arr1.length)) {
+        return true;
+    }
+    return false;
+}
+
+
+
+let resetForNewInput = () => {
+    userInput = undefined;
+    userIntent = undefined;
+    userNouns = [];
+
+}
+
+
+
+
+
+
+
+
+
+
+
+let nounMaster = () => {
+    let presentNoun;
+    let nounDescs = [];
+    for (let i = 0; i < userNouns.length; i++) {
+        presentNoun = false;
+        for (let ele in nouns) {
+            if (ele == userNouns[i]) {
+                presentNoun = true;
+                nounDescs[ele] = nouns[ele];
+                break;
+            }
+        }
+        if (!presentNoun) {
+            output(`Noun: "${userNouns[i]}" not present in the env`)
+            resetForNewInput();
+            return;
+        }
+    }
+    if (compare(userIntent._intent, option1._intent)) {
+        output("1 : chosen");
+        chooseOption(0)
+        return;
+    }
+    if (compare(userIntent._intent, option2._intent)) {
+        output("2 : chosen")
+        chooseOption(1)
+        return;
+    }
+    if (userIntent._intent[0][0][0] == "inspect") {
+        for (let ele in nounDescs) {
+            if (ele == userNouns[0]) {
+                output(nounDescs[ele])
+            }
+        } resetForNewInput();
+        return;
+    }
+    output("random user input to be programmed")
+    resetForNewInput();
+
+
+    // for (let i = 0; i < userIntent.length; i++) {
+    //     for (let j = 0; j < option1.length; j++) {
+    //         if (userIntent[i] == option1[j]) {
+    //             output("1 : chosen");
+    //         }
+    //     }
+
+    // }
+}
+
+
+
+
+
+
+let validateInput = (intent) => {
+    console.log(intent)
+    if (intent[0][0] == "inspect") {
+        if (intent.length != 1) {
+            console.log("not one")
+            return false;
+        }
+        else {
+            // return true;
+            return false;
         }
     }
     return false;
 }
-let searchCheck = (terms, i , termsText) => {
-    let k = 0;
-    termsText.forEach(ele => {
-        if(terms[i++] == ele.text){
-            k++;
-        }
-    })
-    if(k == termsText.length){
-        return true;
-    }
-    else{
-        return false;
-    }
-}
-
-let concat = (terms) =>{
-    let str = "";
-    terms.forEach((ele,i) => {
-        str+=ele.text;
-        if(i != (terms.length-1)){
-            str+= " ";
-        }
-    })
-    return str;
-}
-
-let Intenthas = (intent) => {
-    let a = 0;
-    for(let i = 0; i < intent.length; i++){
-        if(intent[i][1] == "noun"){
-            a++;
-        }
-        if(intent[i][1] == "verb"){
-            a++;
-        }
-    }
-    if(a >= 2){
-        return true;
-    }
-    else{
-        return false;
-    }
-}
-
-
-
-/* Sentence Class: End */
-let text1 = new sentence("open the door using the keys")
-console.log(text1._intent)
-
-/* Generating Intent JSON */
 
 
 
@@ -102,51 +236,61 @@ console.log(text1._intent)
 
 
 
-function intentArray(text) {
-    console.log(text.termList())
-    let terms = text.terms().out("array");
-    let nouns = text.nouns().out('array')
-    let verbs = text.verbs().out('array')
-    let adjs = text.adjectives().out('array');
-    let verbsjson = text.verbs().json();
-    verbsjson.forEach(ele => {
-        if(ele.isNegative){
-            console.log(ele)
-            terms.forEach((elem, i) => {
-                if(elem == ele.terms[0].text){
-                    if(searchCheck(terms,i,ele.terms)){
-                        terms.splice(i, ele.terms.length, concat(ele.terms));
-                    }
+
+
+let processInput = (input) => {
+    userInput = input;
+    userIntent = new sentence(userInput);
+    console.log(userIntent._intent)
+    if (validateInput(userIntent._intent)) {
+        userIntent._intent.forEach(ele => {
+            let pushing = "";
+            ele.forEach(elem => {
+                if (elem[1] == "adj") {
+                    pushing += elem[0] + " ";
+                }
+                if (elem[1] == "noun") {
+                    pushing += elem[0];
                 }
             })
-        }
-    });
-    console.log(terms)
-    console.log(nouns, verbs, adjs)
-    let intent = [];
-    let masterIntent = [];
-    for(let i = terms.length - 1; i >= 0; i--){
-        if(ifIn(terms[i],nouns)){
-            let noun = [terms[i], "noun"];
-            /* console.log("noun") */
-            intent.push(noun);
-        }
-        if(ifIn(terms[i],adjs)){
-            let adj = [terms[i],"adj"];
-            intent.push(adj)
-        }
-        if(ifIn(terms[i],verbs)){
-            /* console.log("verb") */
-            let verb = [terms[i],"verb"];
-            intent.push(verb);
-        }
-        if(Intenthas(intent)){
-            masterIntent.push(intent.reverse())
-            intent = [];
-        }
+            userNouns.push(pushing)
+        });
+        nounMaster();
+
     }
-    return (masterIntent.reverse())
+    else{
+        resetForNewInput();
+    }
 }
+
+
+
+
+
+
+
+let resetVariables = () => {
+    masterData = undefined;
+    option1Text = undefined;
+    option2Text = undefined;
+    nouns = undefined;
+    mainDescription = undefined;
+    mainTitle = undefined;
+    option1 = undefined;
+    option2 = undefined;
+    options = undefined;
+    userInput = undefined;
+    userIntent = undefined;
+    userNouns = [];
+    descs = undefined;
+
+
+
+}
+
+let inputDiv = document.querySelector(".user_input");
+let submit = document.querySelector(".submit")
+submit.addEventListener("click", () => { processInput(inputDiv.value) });
 
 
 
@@ -169,7 +313,7 @@ function intentArray(text) {
 
 /* Generating intent String: End */
 
-/* 
+/*
 let question = "You are in a room and there are 3 objects a door, a bed, and a joker card what will you do?";
 console.log(question)
 let option1Text = "Open the door";

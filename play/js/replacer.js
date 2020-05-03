@@ -2,10 +2,13 @@ let synonyms = {
     'open': ["go through", 'leave', 'get through', 'twist'],
     'lay': ["lie down", 'rest'],
     'jump': ["bounce"],
-    'doorknob': ["door knob"]
+    //inspect verbs
+    'inspect': ["describe", "look", "check"],
+
+    //nouns to be replaced
+
+    'knob' : ['door knob']
 }
-
-
 
 
 let replacer = (text) => {

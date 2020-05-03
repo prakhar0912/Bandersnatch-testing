@@ -38,7 +38,7 @@
                     console.log(result);
                     sessionStorage.setItem("auth_key", result["token"])
                     console.log(sessionStorage.getItem("auth_key"))
-                    play();
+                    window.location = "../play/play.html"
                 })
                 .catch(error => console.log('error', error));
         }
