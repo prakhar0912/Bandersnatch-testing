@@ -2,6 +2,7 @@
 class sentence {
     constructor(text) {
         this._mainText = text;
+        text = nlp(text).verbs().toInfinitive().all().text();
         this._Editedtext = nlp(text);
         this._Editedtext.contractions().expand();
         this._Editedtext.toLowerCase();
@@ -83,13 +84,13 @@ let Intenthas = (intent) => {
 function intentArray(text) {
     // console.log(text.termList())
     let verbsjson = text.verbs().json();
-    verbsjson.forEach(ele => {
-        text.replace(ele.text, nlp(ele.text).verbs().toInfinitive());
-    })
-    console.log(text.out("string"))
+    // verbsjson.forEach(ele => {
+    //     text.replace(ele.text, nlp(ele.text).verbs().toInfinitive());
+    // })
+    //console.log(text.out("string"))
     let terms = text.terms().out("array");
     let nouns = text.nouns().out('array')
-    let verbs = text.verbs().toInfinitive().out('array')
+    let verbs = text.verbs().out('array')
     let adjs = text.adjectives().out('array');
 
     verbsjson.forEach(ele => {
@@ -105,8 +106,8 @@ function intentArray(text) {
         }
 
     });
-    console.log(terms)
-    console.log(nouns, verbs, adjs)
+    // console.log(terms)
+    // console.log(nouns, verbs, adjs)
     let intent = [];
     let masterIntent = [];
     for (let i = 0; i < terms.length; i++) {

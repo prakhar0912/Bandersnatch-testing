@@ -2,6 +2,7 @@ let synonyms = {
     'open': ["go through", 'leave', 'get through', 'twist', "enter"],
     'lay': ["lie down", 'rest'],
     'jump': ["bounce"],
+    'pick': ["pick up"],
     //inspect verbs
     'inspect': ["describe", "look", "check"],
 
