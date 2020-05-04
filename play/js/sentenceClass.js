@@ -14,8 +14,8 @@ class sentence {
 
 let hasAnd = (text) => {
     let terms = text.terms().out("array")
-    for(let i = 0; i < terms.length; i++){
-        if(terms[i] == "and"){
+    for (let i = 0; i < terms.length; i++) {
+        if (terms[i] == "and") {
             return true;
         }
     }
@@ -82,11 +82,16 @@ let Intenthas = (intent) => {
 
 function intentArray(text) {
     // console.log(text.termList())
+    let verbsjson = text.verbs().json();
+    verbsjson.forEach(ele => {
+        text.replace(ele.text, nlp(ele.text).verbs().toInfinitive());
+    })
+    console.log(text.out("string"))
     let terms = text.terms().out("array");
     let nouns = text.nouns().out('array')
-    let verbs = text.verbs().out('array')
+    let verbs = text.verbs().toInfinitive().out('array')
     let adjs = text.adjectives().out('array');
-    let verbsjson = text.verbs().json();
+
     verbsjson.forEach(ele => {
         if (ele.isNegative) {
             // console.log(ele)
@@ -98,12 +103,14 @@ function intentArray(text) {
                 }
             })
         }
+
     });
     console.log(terms)
     console.log(nouns, verbs, adjs)
     let intent = [];
     let masterIntent = [];
     for (let i = 0; i < terms.length; i++) {
+
         if (ifIn(terms[i], nouns)) {
             let noun = [terms[i], "noun"];
             /* console.log("noun") */
