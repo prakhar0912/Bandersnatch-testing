@@ -377,7 +377,7 @@ let nounMaster = () => {
 let validateInput = (intent) => {
     // console.log(intent)
     if (intent.length == 0 || intent[0].length == 0) {
-        printToTerminal("I can't be wasting time!", "error");
+        printToTerminal("I can't be wasting time!(Use a verb to guide your character)", "error");
         return false;
     }
     if (userIntent._hasAnd == true) {
