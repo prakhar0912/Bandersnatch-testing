@@ -99,8 +99,8 @@ function intentArray(text) {
             })
         }
     });
-    // console.log(terms)
-    // console.log(nouns, verbs, adjs)
+    console.log(terms)
+    console.log(nouns, verbs, adjs)
     let intent = [];
     let masterIntent = [];
     for (let i = 0; i < terms.length; i++) {
