@@ -6,19 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        body {
-            background-color: black;
+        #terminal{
+            position: relative;
+            min-height: 300px;
+            height: 80vh;
         }
     </style>
 </head>
 
 <body>
-    <form action="">
-        <input type="text" class="user_input" placeholder="Enter your input here">
-        <button class="submit" type="submit">Submit</button>
-    </form>
+    <div id="terminal">
 
+    </div>
     <script src="https://unpkg.com/compromise@latest/builds/compromise.min.js"></script>
+    <script src="../terminal/terminal.js"></script>
     <script src="./js/addwords.js"></script>
     <script src="./js/replacer.js"></script>
     <script src="./js/sentenceClass.js"></script>

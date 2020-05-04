@@ -11,16 +11,94 @@ let userInput;
 let userIntent;
 let userNouns = [];
 let descs;
+let terminal;
+terminal = new Terminal();
+document.querySelector("#terminal").appendChild(terminal.html)
 
 
+let terminalInit = () => {
+
+    let email;
+    let pass;
+    terminal.printSlow("Login to play Bandersnatch!").then(() => {
+        terminal.input("Email: ", (input) => {
+            email = input;
+            terminal.printSlow("Password: ").then(() => {
+                terminal.password("", (input) => {
+                    pass = input;
+
+                    var myHeaders = new Headers();
+                    myHeaders.append("Content-Type", "application/json");
+
+                    var raw = JSON.stringify({ "email": email, "password": pass });
+                    console.log(raw)
+                    var requestOptions = {
+                        method: 'POST',
+                        headers: myHeaders,
+                        body: raw,
+                        redirect: 'follow'
+                    };
+
+                    fetch("https://playscenario.dscvit.com/api/bandersnatch/signin", requestOptions)
+                        .then(response => response.json())
+                        .then(result => {
+                            console.log(result);
+                            sessionStorage.setItem("auth_key", result["token"])
+                            console.log(sessionStorage.getItem("auth_key"))
+                            if (result.token) {
+                                terminal.printSlow("Logged In!", "green").then(() => {
+                                    terminal.printSlow("The Game begins in:").then(() => {
+                                        let i = 5;
+                                        let timer = setInterval(() => {
+                                            if (i < 1) {
+                                                clearInterval(timer);
+                                                terminal.clear();
+                                                play();
+                                            }
+                                            else {
+                                                terminal.printSameLine(`${i}  `);
+                                                i--;
+                                            }
+                                        }, 1000)
+                                    })
 
 
-let output = (text) => {
-    console.log(text)
+                                })
+                            }
+                            else {
+                                terminal.printSlow("Error!", "red").then(() => {
+                                    terminal.printSlow("Enter any key to Retry").then(() => {
+                                        terminal.input(" ", () => {
+                                            terminal.clear();
+                                            terminalInit();
+
+                                        })
+                                    })
+                                });
+                            }
+                        })
+                        .catch(error => {
+                            console.log('error', error);
+                            terminal.printSlow("Error!", "red").then(() => {
+                                terminal.printSlow("Enter any key to Retry").then(() => {
+                                    terminal.input(" ", () => {
+                                        terminal.clear();
+                                        terminalInit();
+
+                                    })
+                                })
+                            });
+
+                        });
+
+                })
+
+            })
+        })
+    })
+
 }
-
-
-
+terminalInit();
 
 
 
@@ -49,7 +127,6 @@ let play = () => {
         })
         .catch(error => console.log('error', error));
 }
-play();
 
 let chooseOption = (data) => {
     var myHeaders = new Headers();
@@ -93,6 +170,47 @@ let optionsIntent = () => {
 
 
 
+let printToTerminal = (text, option, color) => {
+    if (option == "desc") {
+        terminal.clear();
+        terminal.print(text);
+        terminal.newline();
+        terminal.printSlow("What would you do?", "green").then(() => {
+            terminal.newline();
+            terminal.input(" ", (input) => {
+                processInput(input)
+            })
+        })
+    }
+    else if (option == "error") {
+        terminal.printSlow(text, "red").then(() => {
+            terminal.newline();
+            terminal.input(" ", (input) => {
+                processInput(input)
+            })
+        })
+    }
+    else if (option == "inspect") {
+        terminal.printSlow(text, "blue").then(() => {
+            terminal.newline();
+            terminal.input(" ", (input) => {
+                processInput(input)
+            })
+        })
+    }
+    else {
+        terminal.printSlow(text, color).then(() => {
+            terminal.newline();
+            terminal.input(" ", (input) => {
+                processInput(input)
+            })
+        })
+    }
+
+
+}
+
+
 
 
 
@@ -104,14 +222,14 @@ let extractInfo = (data) => {
     option1Text = masterData["misc"]["left_option"];
     option2Text = masterData["misc"]["right_option"];
     nouns = masterData["misc"]["descriptions"];
-    console.log(mainDescription)
+    printToTerminal(mainDescription, "desc")
     optionsIntent();
 }
 
 
 let compare = (arr1, arr2) => {
     // console.log(arr1, arr2)
-    if(arr1.length != arr2.length){
+    if (arr1.length != arr2.length) {
         return false;
     }
     let masterFlag = 0;
@@ -142,7 +260,7 @@ let compare = (arr1, arr2) => {
         }
         return false;
     }
-    else{
+    else {
         for (let i = 0; i < arr1.length; i++) {
             let flag = 0;
             for (let j = 0; j < arr1[i].length; j++) {
@@ -214,30 +332,30 @@ let nounMaster = () => {
             }
         }
         if (!presentNoun) {
-            output(`Noun: "${userNouns[i]}" not present in the env`)
+            printToTerminal(`Noun: "${userNouns[i]}" not present in the Env`, "error");
             resetForNewInput();
             return;
         }
     }
     if (compare(userIntent._intent, option1._intent)) {
-        output("1 : chosen");
+        console.log("Option 1 choosen")
         chooseOption(0)
         return;
     }
     if (compare(userIntent._intent, option2._intent)) {
-        output("2 : chosen")
+        console.log("Option 2 choosen")
         chooseOption(1)
         return;
     }
     if (userIntent._intent[0][0][0] == "inspect") {
         for (let ele in nounDescs) {
             if (ele == userNouns[0]) {
-                output(nounDescs[ele])
+                printToTerminal(nounDescs[ele], "inspect")
             }
         } resetForNewInput();
         return;
     }
-    output("random user input to be programmed")
+    printToTerminal("random user input to be programmed", "error")
     resetForNewInput();
 
 
@@ -259,11 +377,11 @@ let nounMaster = () => {
 let validateInput = (intent) => {
     // console.log(intent)
     if (intent.length == 0 || intent[0].length == 0) {
-        output("please use a verb and a noun to describe what you want your character to do");
+        printToTerminal("I can't be wasting time!", "error");
         return false;
     }
     if (userIntent._hasAnd == true) {
-        output("and in the input please have a command at a time")
+        printToTerminal("Gotta take it one action at a time", "error")
         return false;
     }
     if (intent[0][0] == "inspect") {
@@ -287,7 +405,7 @@ let validateInput = (intent) => {
 let processInput = (input) => {
     userInput = input;
     userIntent = new sentence(userInput);
-    console.log("Users Intent: ",userIntent._intent)
+    console.log("Users Intent: ", userIntent._intent)
     if (validateInput(userIntent._intent)) {
         userIntent._intent.forEach(ele => {
             let pushing = "";
@@ -334,144 +452,7 @@ let resetVariables = () => {
 
 }
 
-let inputDiv = document.querySelector(".user_input");
-let submit = document.querySelector(".submit")
-submit.addEventListener("click", (e) => {
-    e.preventDefault();
-    processInput(inputDiv.value);
-    inputDiv.value = "";
-});
 
-
-
-
-
-/* Generating Intent JSON: End */
-
-
-
-/* Generating intent String */
-
-/* let intentText = (json) => {
-    let str = "";
-    json.forEach(wordObj => {
-        str += wordObj.text;
-        str += " ";
-    })
-    return str;
-} */
-
-/* Generating intent String: End */
-
-/*
-let question = "You are in a room and there are 3 objects a door, a bed, and a joker card what will you do?";
-console.log(question)
-let option1Text = "Open the door";
-let option2Text = "lay in the bed";
-let nouns = {
-    'door': 'This door is made of wood',
-    'bed': "It's a nice comfy bed",
-    'joker card': "Hmmm is there blood on this!?",
-    'floor': "Looks like the floor is made of marble",
-};
-
-let describingVerbs = ["check", "view", "inspect", "investigate", "read", "hold", "pick up"]
-let option1 = new sentence(nlp(option1Text).text('clean'))
-console.log("The option 1 intent: ", option1.intentText)
-let storyActionVerb = [];
-let storyNouns = [];
-let optionIntents = [];
-storyActionVerb.push(option1.verbs[0]);
-storyNouns.push(option1.nouns[0])
-optionIntents.push(option1.intentText)
-
-
-let option2 = new sentence(nlp(option2Text).text('clean'))
-console.log("The option 2 intent: ", option2.intentText);
-storyActionVerb.push(option2.verbs[0])
-storyNouns.push(option2.nouns[0])
-optionIntents.push(option2.intentText)
-
-
-
-let userInputText = "pick up the joker card";
-let userInput = new sentence(nlp(userInputText).text('clean'))
-console.log("The users intent is to: ", userInput.intentText);
-
-
-
-
-
-
-
-let output = (text) => {
-    console.log(text);
-}
-
-
-
-
-
-
-
-
-
-
-
-let handleVerbs = (verb, noun) => {
-    if (verb == "jump") {
-        output(`Why even try jumping on the ${noun}`);
-    }
-    describingVerbs.forEach(Dverb => {
-        if (verb == Dverb) {
-            output(nouns[noun]);
-        }
-    })
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-let exists = false;
-
-let nounMaster = () => {
-    let flag = false;
-    optionIntents.forEach((ele, i) => {
-        if (ele == userInput.intentText) {
-            flag = true;
-            console.log("Option ", i , "chosen")
-        }
-    })
-    if (flag == false) {
-        for (let i = 0; i < userInput.nouns.length; i++) {
-            if(nouns[userInput.nouns[0].text]){
-                exists = true;
-            }
-        }
-        if (exists == false) {
-            output(`${userInput.nouns[0].text} does not exist in the environment`);
-        }
-        else {
-            handleVerbs(userInput.verbs[0].text, userInput.nouns[0].text);
-        }
-    }
-}
-nounMaster();
- */
 
 
 
