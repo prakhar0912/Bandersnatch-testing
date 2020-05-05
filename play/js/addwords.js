@@ -12,6 +12,7 @@ nlp.extend((text, world) =>{
         'open':"Verb",
         'using': "Verb",
         'with': "Verb",
-        'north': "Adjective"
+        'north': "Adjective",
+        'do not': "Adverb"
     });
 })

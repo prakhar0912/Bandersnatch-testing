@@ -8,10 +8,11 @@ class sentence {
         this._text = replacer(this._text);
         this._finalText = this._text.verbs().toInfinitive().all().text();
         this._finalText = nlp(this._finalText)
+        // this._finalText = doNotCase(this._finalText);
         this._splitAtVerbs = this._finalText.splitBefore("#Verb").out("array");
+        console.log(this._splitAtVerbs)
         this._intent = intentArray(this._splitAtVerbs)
         this._hasAnd = hasAnd(this._finalText);
-
     }
 }
 
@@ -86,74 +87,6 @@ let Intenthas = (intent) => {
 /* Sentence Class: End */
 
 function intentArray(text) {
-    // console.log(text.termList())
-    // let verbsjson = text.verbs().json();
-    // verbsjson.forEach(ele => {
-    //     text.replace(ele.text, nlp(ele.text).verbs().toInfinitive());
-    // })
-    //console.log(text.out("string"))
-    // let terms = text.terms().out("array");
-    // let nouns = text.nouns().out('array');
-    // let verbs = text.verbs().out('array')
-    // let adjs = text.adjectives().out('array');
-
-    // verbsjson.forEach(ele => {
-    //     if (ele.isNegative) {
-    //         // console.log(ele)
-    //         terms.forEach((elem, i) => {
-    //             if (elem == ele.terms[0].text) {
-    //                 if (searchCheck(terms, i, ele.terms)) {
-    //                     terms.splice(i, ele.terms.length, concat(ele.terms));
-    //                 }
-    //             }
-    //         })
-    //     }
-
-    // });
-    // console.log(terms)
-    // console.log(nouns, verbs, adjs)
-    // let intent = [];
-    // let masterIntent = [];
-    // let nounAdded = -1;
-    // let verbAdded = false;
-
-    // for (let i = 0; i < terms.length + 1; i++) {
-    //     if (Intenthas(intent) && adjs.length == 0) {
-    //         console.log(i)
-    //         masterIntent.push(intent)
-    //         intent = [];
-    //         nounAdded = -1;
-    //         verbAdded = false;
-    //     }
-    //     if (ifIn(terms[i], nouns)) {
-    //         let noun = [terms[i], "noun"];
-    //         /* console.log("noun") */
-    //         intent.push(noun);
-    //         nounAdded = intent.length;
-    //     }
-    //     if (ifIn(terms[i], adjs)) {
-    //         if (nounAdded != -1) {
-    //             intent.splice(nounAdded - 1, 0, [terms[i], "adj"])
-    //             adjs.pop();
-    //         }
-    //         else {
-    //             let adj = [terms[i], "adj"];
-    //             intent.push(adj)
-    //             adjs.pop();
-    //         }
-    //     }
-    //     if (ifIn(terms[i], verbs)) {
-    //         /* console.log("verb") */
-    //         if (verbAdded == false) {
-    //             let verb = [terms[i], "verb"];
-    //             intent.push(verb);
-    //             verbAdded = true;
-    //         }
-    //     }
-
-    // }
-
-    //return (masterIntent)
     masterIntent = [];
     for(let i = 0; i < text.length; i++){
         console.log(text[i])
