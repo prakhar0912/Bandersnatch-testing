@@ -2,15 +2,19 @@
 class sentence {
     constructor(text) {
         this._mainText = text;
-        text = nlp(text).verbs().toInfinitive().all().text();
-        this._Editedtext = nlp(text);
-        this._Editedtext.contractions().expand();
-        this._Editedtext.toLowerCase();
-        this._text = replacer(this._Editedtext);
-        this._intent = intentArray(this._text)
-        this._hasAnd = hasAnd(this._text);
+        this._text = nlp(text);
+        this._text.contractions().expand();
+        this._text.toLowerCase();
+        this._text = replacer(this._text);
+        this._finalText = this._text.verbs().toInfinitive().all().text();
+        this._finalText = nlp(this._finalText)
+        this._splitAtVerbs = this._finalText.splitBefore("#Verb").out("array");
+        this._intent = intentArray(this._splitAtVerbs)
+        this._hasAnd = hasAnd(this._finalText);
+
     }
 }
+
 
 
 let hasAnd = (text) => {
@@ -83,53 +87,89 @@ let Intenthas = (intent) => {
 
 function intentArray(text) {
     // console.log(text.termList())
-    let verbsjson = text.verbs().json();
+    // let verbsjson = text.verbs().json();
     // verbsjson.forEach(ele => {
     //     text.replace(ele.text, nlp(ele.text).verbs().toInfinitive());
     // })
     //console.log(text.out("string"))
-    let terms = text.terms().out("array");
-    let nouns = text.nouns().out('array')
-    let verbs = text.verbs().out('array')
-    let adjs = text.adjectives().out('array');
+    // let terms = text.terms().out("array");
+    // let nouns = text.nouns().out('array');
+    // let verbs = text.verbs().out('array')
+    // let adjs = text.adjectives().out('array');
 
-    verbsjson.forEach(ele => {
-        if (ele.isNegative) {
-            // console.log(ele)
-            terms.forEach((elem, i) => {
-                if (elem == ele.terms[0].text) {
-                    if (searchCheck(terms, i, ele.terms)) {
-                        terms.splice(i, ele.terms.length, concat(ele.terms));
-                    }
-                }
-            })
-        }
+    // verbsjson.forEach(ele => {
+    //     if (ele.isNegative) {
+    //         // console.log(ele)
+    //         terms.forEach((elem, i) => {
+    //             if (elem == ele.terms[0].text) {
+    //                 if (searchCheck(terms, i, ele.terms)) {
+    //                     terms.splice(i, ele.terms.length, concat(ele.terms));
+    //                 }
+    //             }
+    //         })
+    //     }
 
-    });
+    // });
     // console.log(terms)
     // console.log(nouns, verbs, adjs)
-    let intent = [];
-    let masterIntent = [];
-    for (let i = 0; i < terms.length; i++) {
+    // let intent = [];
+    // let masterIntent = [];
+    // let nounAdded = -1;
+    // let verbAdded = false;
 
-        if (ifIn(terms[i], nouns)) {
-            let noun = [terms[i], "noun"];
-            /* console.log("noun") */
-            intent.push(noun);
+    // for (let i = 0; i < terms.length + 1; i++) {
+    //     if (Intenthas(intent) && adjs.length == 0) {
+    //         console.log(i)
+    //         masterIntent.push(intent)
+    //         intent = [];
+    //         nounAdded = -1;
+    //         verbAdded = false;
+    //     }
+    //     if (ifIn(terms[i], nouns)) {
+    //         let noun = [terms[i], "noun"];
+    //         /* console.log("noun") */
+    //         intent.push(noun);
+    //         nounAdded = intent.length;
+    //     }
+    //     if (ifIn(terms[i], adjs)) {
+    //         if (nounAdded != -1) {
+    //             intent.splice(nounAdded - 1, 0, [terms[i], "adj"])
+    //             adjs.pop();
+    //         }
+    //         else {
+    //             let adj = [terms[i], "adj"];
+    //             intent.push(adj)
+    //             adjs.pop();
+    //         }
+    //     }
+    //     if (ifIn(terms[i], verbs)) {
+    //         /* console.log("verb") */
+    //         if (verbAdded == false) {
+    //             let verb = [terms[i], "verb"];
+    //             intent.push(verb);
+    //             verbAdded = true;
+    //         }
+    //     }
+
+    // }
+
+    //return (masterIntent)
+    masterIntent = [];
+    for(let i = 0; i < text.length; i++){
+        console.log(text[i])
+        let intent = [];
+        let nlpText = nlp(text[i]);
+        let verb = nlpText.verbs().json();
+        let noun = nlpText.nouns().json();
+        let adj = nlpText.nouns().adjectives().json();
+        console.log(verb, noun, adj);
+        intent.push([verb[0].text, "verb"]);
+        if(adj.length != 0){
+            intent.push([adj[0].text, "adj"]);
         }
-        if (ifIn(terms[i], adjs)) {
-            let adj = [terms[i], "adj"];
-            intent.push(adj)
-        }
-        if (ifIn(terms[i], verbs)) {
-            /* console.log("verb") */
-            let verb = [terms[i], "verb"];
-            intent.push(verb);
-        }
-        if (Intenthas(intent)) {
-            masterIntent.push(intent)
-            intent = [];
-        }
+        intent.push([noun[0].text, "noun"]);
+        masterIntent.push(intent);
     }
-    return (masterIntent)
+    return masterIntent;
 }
+

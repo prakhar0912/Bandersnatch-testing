@@ -3,12 +3,17 @@ let synonyms = {
     'lay': ["lie down", 'rest'],
     'jump': ["bounce"],
     'pick': ["pick up"],
+    '': ["to the"],
+    'key': ["the keys", "the key"],
+    'with':["using"],
+
     //inspect verbs
     'inspect': ["describe", "look", "check"],
 
     //nouns to be replaced
 
-    'knob' : ['door knob']
+    'knob' : ['door knob'],
+    "paper": ["piece of paper", "sheet of paper"]
 }
 
 
