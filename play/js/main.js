@@ -246,14 +246,6 @@ let compare = (arr1, arr2) => {
                 masterFlag++;
             }
         }
-        // if(arr1.length == 1){
-        //     if(masterFlag == 1){
-        //         return true;
-        //     }
-        //     else{
-        //         return false;
-        //     }
-        // }
         if (masterFlag == (arr1.length)) {
             return true;
         }

@@ -88,7 +88,7 @@ let Intenthas = (intent) => {
 
 function intentArray(text) {
     masterIntent = [];
-    for(let i = 0; i < text.length; i++){
+    for (let i = 0; i < text.length; i++) {
         console.log(text[i])
         let intent = [];
         let nlpText = nlp(text[i]);
@@ -96,12 +96,18 @@ function intentArray(text) {
         let noun = nlpText.nouns().json();
         let adj = nlpText.nouns().adjectives().json();
         console.log(verb, noun, adj);
-        intent.push([verb[0].text, "verb"]);
-        if(adj.length != 0){
+        if (verb.length != 0) {
+            intent.push([verb[0].text, "verb"]);
+        }
+        if (adj.length != 0) {
             intent.push([adj[0].text, "adj"]);
         }
-        intent.push([noun[0].text, "noun"]);
-        masterIntent.push(intent);
+        if (noun.length != 0) {
+            intent.push([noun[0].text, "noun"]);
+        }
+        if (verb.length != 0 && noun.length != 0) {
+            masterIntent.push(intent);
+        }
     }
     return masterIntent;
 }
