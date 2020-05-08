@@ -74,7 +74,7 @@ let terminalInit = async () => {
         });
 
 }
-// terminalInit();
+terminalInit();
 
 
 
@@ -127,7 +127,7 @@ let chooseOption = (data) => {
         })
         .catch(error => console.log('error', error));
 }
-play();
+// play();
 
 
 
