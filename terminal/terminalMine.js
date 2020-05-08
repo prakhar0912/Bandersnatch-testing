@@ -45,7 +45,7 @@ async function type(text) {
         typer.appendChild(char);
         window.scrollTo(0, document.body.scrollHeight);
 
-        await pause(0.00);
+        await pause(0.05);
     }
     if (text.length == 1) {
         await pause(1.00);
