@@ -12,93 +12,69 @@ let userIntent;
 let userNouns = [];
 let descs;
 let terminal;
-terminal = new Terminal();
-document.querySelector("#terminal").appendChild(terminal.html)
 
-
-let terminalInit = () => {
+let terminalInit = async () => {
 
     let email;
     let pass;
-    terminal.printSlow("Login to play Bandersnatch!").then(() => {
-        terminal.input("Email: ", (input) => {
-            email = input;
-            terminal.printSlow("Password: ").then(() => {
-                terminal.password("", (input) => {
-                    pass = input;
-
-                    var myHeaders = new Headers();
-                    myHeaders.append("Content-Type", "application/json");
-
-                    var raw = JSON.stringify({ "email": email, "password": pass });
-                    console.log(raw)
-                    var requestOptions = {
-                        method: 'POST',
-                        headers: myHeaders,
-                        body: raw,
-                        redirect: 'follow'
-                    };
-
-                    fetch("https://playscenario.dscvit.com/api/bandersnatch/signin", requestOptions)
-                        .then(response => response.json())
-                        .then(result => {
-                            console.log(result);
-                            sessionStorage.setItem("auth_key", result["token"])
-                            console.log(sessionStorage.getItem("auth_key"))
-                            if (result.token) {
-                                terminal.printSlow("Logged In!", "green").then(() => {
-                                    terminal.printSlow("The Game begins in:").then(() => {
-                                        let i = 5;
-                                        let timer = setInterval(() => {
-                                            if (i < 1) {
-                                                clearInterval(timer);
-                                                terminal.clear();
-                                                play();
-                                            }
-                                            else {
-                                                terminal.printSameLine(`${i}  `);
-                                                i--;
-                                            }
-                                        }, 1000)
-                                    })
-
-
-                                })
-                            }
-                            else {
-                                terminal.printSlow("Error!", "red").then(() => {
-                                    terminal.printSlow("Enter any key to Retry").then(() => {
-                                        terminal.input(" ", () => {
-                                            terminal.clear();
-                                            terminalInit();
-
-                                        })
-                                    })
-                                });
-                            }
-                        })
-                        .catch(error => {
-                            console.log('error', error);
-                            terminal.printSlow("Error!", "red").then(() => {
-                                terminal.printSlow("Enter any key to Retry").then(() => {
-                                    terminal.input(" ", () => {
-                                        terminal.clear();
-                                        terminalInit();
-
-                                    })
-                                })
-                            });
-
-                        });
-
-                })
-
-            })
-        })
+    await type("Login to play Bandersnatch!");
+    await type("Email:");
+    await input().then((res) => {
+        email = res;
     })
+    await type("Password:");
+    await input().then((res) => {
+        pass = res;
+    })
+    console.log(email, pass);
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({ "email": email, "password": pass });
+
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+
+    fetch("https://playscenario.dscvit.com/api/bandersnatch/signin", requestOptions)
+        .then(response => response.json())
+        .then(async (result) => {
+            console.log(result)
+            sessionStorage.setItem("auth_key", result["token"])
+            console.log(sessionStorage.getItem("auth_key"))
+            if (result.token) {
+                await type("Logged In!");
+                await type("The Game Begins in:");
+                await type("3");
+                await type("2");
+                await type("1");
+                clear();
+                play();
+            }
+            else {
+                await type("Error!");
+                await type("Enter any key to retry:");
+                await input().then(() => {
+                    clear();
+                    terminalInit();
+                })
+            }
+        })
+        .catch(async (error) => {
+            console.log('error', error)
+            await type("Error!");
+            await type("Enter any key to retry:");
+            await input().then(() => {
+                clear();
+                terminalInit();
+            })
+        });
 
 }
-terminalInit();
+// terminalInit();
 
 
 
@@ -151,7 +127,7 @@ let chooseOption = (data) => {
         })
         .catch(error => console.log('error', error));
 }
-
+play();
 
 
 
@@ -169,16 +145,15 @@ let optionsIntent = () => {
 
 
 
-let printToTerminal = (text, option, color) => {
+let printToTerminal = async (text, option, color) => {
     if (option == "desc") {
-        terminal.clear();
-        terminal.print(text);
-        terminal.newline();
-        terminal.printSlow("What would you do?", "green").then(() => {
-            terminal.newline();
-            terminal.input(" ", (input) => {
-                processInput(input)
-            })
+        newline();
+        await type(text);
+        newline();
+        await type("What would you do?");
+        newline();
+        input().then((input) => {
+            processInput(input);
         })
     }
     else if (option == "error") {
