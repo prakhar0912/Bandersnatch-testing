@@ -145,7 +145,7 @@ let optionsIntent = () => {
 
 
 
-let printToTerminal = async (text, option, color) => {
+let printToTerminal = async (text, option) => {
     if (option == "desc") {
         newline();
         await type(text);
@@ -156,7 +156,7 @@ let printToTerminal = async (text, option, color) => {
             processInput(input);
         })
     }
-    else (option == "error") {
+    else {
         await type(text);
         newline();
         await input().then((res) => {
