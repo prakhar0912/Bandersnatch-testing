@@ -156,32 +156,13 @@ let printToTerminal = async (text, option, color) => {
             processInput(input);
         })
     }
-    else if (option == "error") {
-        terminal.printSlow(text, "red").then(() => {
-            terminal.newline();
-            terminal.input(" ", (input) => {
-                processInput(input)
-            })
+    else (option == "error") {
+        await type(text);
+        newline();
+        await input().then((res) => {
+            processInput(res);
         })
     }
-    else if (option == "inspect") {
-        terminal.printSlow(text, "blue").then(() => {
-            terminal.newline();
-            terminal.input(" ", (input) => {
-                processInput(input)
-            })
-        })
-    }
-    else {
-        terminal.printSlow(text, color).then(() => {
-            terminal.newline();
-            terminal.input(" ", (input) => {
-                processInput(input)
-            })
-        })
-    }
-
-
 }
 
 
