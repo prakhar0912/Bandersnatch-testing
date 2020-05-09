@@ -1,0 +1,167 @@
+body {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+#monitor {
+    position: absolute;
+    display: grid;
+    height: 100vh;
+    width: 100vw;
+    grid-template-areas: "main main main switch""main main main switch""main main main speaker";
+
+}
+
+.right-top {
+    position: relative;
+    grid-area: switch;
+    display: grid;
+    grid-template-rows: auto auto;
+    width: 100%;
+    background: #2E2E2E url("../img/Panel Base.png") no-repeat no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+}
+
+.sticker {
+    position: relative;
+    background: transparent url("../img/Sticker.svg") no-repeat no-repeat;
+    background-size: 80% 80%;
+    background-position: center;
+}
+
+.title {
+    height: 100%;
+    position: relative;
+    background: transparent url('../img/Place Holder Logo.svg') no-repeat no-repeat;
+    background-size: 75% 75%;
+    background-position: center;
+    z-index: 1;
+}
+
+.switch {
+    position: relative;
+    background: transparent url("../img/Knob.svg") no-repeat no-repeat;
+    background-size: 80% 80%;
+    background-position: center;
+    transition: transform 0.7s;
+    transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+    
+}
+
+.switch:not(.off){
+    transform: rotate(-80deg);
+}
+
+
+
+
+.speaker-logo {
+    position: relative;
+    grid-area: speaker;
+    background-color: #2E2E2E;
+    display: grid;
+    grid-template-rows: 80% 20%;
+}
+
+.speaker {
+    position: relative;
+    background: transparent url("../img/Speaker Grill.png") no-repeat no-repeat;
+    background-size: 90% 90%;
+    background-position: center;
+}
+
+.logo {
+    position: relative;
+    background: transparent url("../img/DSC-Logo.png") no-repeat no-repeat;
+    background-position: center;
+    background-size: 30% 50%;
+}
+
+#bezel {
+    position: relative;
+    grid-area: main;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+    height: 100%;
+    /* border: 30px solid transparent; */
+    border-image-source: url("../img/CRT_SCREEN.png");
+    border-image-outset: 0;
+    border-image-slice: 30 fill;
+}
+
+.crt-container{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+
+
+
+#crt{
+    position: relative;
+    height: 87%;
+    width: 91%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    /* border-top-left-radius: 100px; */
+    border-radius: 40px;
+    background-color: #0e5f3b;
+    /* background-color: red; */
+    overflow: hidden;
+    opacity: 1;
+
+}
+
+.terminal {
+    /* padding: 0 50px;open  */
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}       
+
+
+.crt-container{
+    display: none;
+}
+
+
+.turn-on{
+    animation: turnOff 0.3s ease-in-out;
+    animation-direction: reverse;
+    display: block;
+}
+
+
+
+
+@keyframes turnOff {
+	0% {
+		background: #fff !important;
+		transform: scale(1, 1.0) translate3d(0, 0, 0);
+		-webkit-filter: brightness(1);
+        filter: brightness(1);
+	}
+	60% {
+		background: #fff !important;
+		transform: scale(1.05, 0.001) translate3d(0, 0, 0);
+		-webkit-filter: brightness(10);
+		filter: brightness(10);
+	}
+	100% {
+		background: #fff !important;
+		animation-timing-function: ease-out;
+		transform: scale(0, 0.0001) translate3d(0, 0, 0);
+		-webkit-filter: brightness(50);
+        filter: brightness(50);
+	}
+}

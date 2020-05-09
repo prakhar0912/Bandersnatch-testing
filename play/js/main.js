@@ -11,7 +11,32 @@ let userInput;
 let userIntent;
 let userNouns = [];
 let descs;
-let terminal;
+
+
+let key = document.querySelector(".switch");
+let crt = document.querySelector("#crt");
+let crtContainer = document.querySelector(".crt-container");
+let termi = document.querySelector(".terminal");
+
+key.addEventListener("click", () => {
+    key.classList.toggle("off");
+    change = true;
+    setTimeout(() => {
+        crt.classList.toggle("off");
+        crtContainer.classList.toggle("turn-on");
+        change = false;
+        termi.innerHTML = "";
+        terminalInit();
+    }, 400)
+
+})
+
+
+
+
+
+
+
 
 let terminalInit = async () => {
 
@@ -75,10 +100,6 @@ let terminalInit = async () => {
 
 }
 terminalInit();
-
-
-
-
 
 
 

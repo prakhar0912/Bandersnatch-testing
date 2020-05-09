@@ -1,4 +1,4 @@
-
+let change = false;
 async function input() {
     return new Promise(resolve => {
         const onKeyDown = event => {
@@ -10,7 +10,6 @@ async function input() {
                 resolve(result);
             }
         };
-
         let terminal = document.querySelector(".terminal");
         let input = document.createElement("div");
         input.classList.add("active");
@@ -48,6 +47,9 @@ async function type(text) {
         typer.appendChild(char);
 
         container.scrollTop = container.scrollHeight;
+        if (change == true) {
+            return;
+        }
 
         await pause(0.01);
     }

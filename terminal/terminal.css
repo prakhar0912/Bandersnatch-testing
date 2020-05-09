@@ -168,7 +168,6 @@
 #input::before {
     content: ">";
     left: 0;
-    padding-left: 12px;
     margin-right: 5px;
 }
 
