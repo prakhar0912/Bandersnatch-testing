@@ -170,6 +170,14 @@ body {
 @media(max-width: 800px){
     #monitor{
         height: calc(var(--vh, 1vh) * 100);
-        grid-template-areas: "switch" "main" "main" "main" "main""speaker";
+        grid-template-areas: "main" "main" "main" "switch";
     }
+    .speaker-logo{
+        display: none;
+        grid-template-rows: auto auto;
+    }
+    .logo{
+        height: 3vh;
+    }
+
 }
