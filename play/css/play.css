@@ -165,3 +165,11 @@ body {
         filter: brightness(50);
 	}
 }
+
+
+@media(max-width: 800px){
+    #monitor{
+        height: calc(var(--vh, 1vh) * 100);
+        grid-template-areas: "switch" "main" "main" "main" "main""speaker";
+    }
+}
