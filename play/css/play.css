@@ -180,8 +180,12 @@ body {
         display: none;
         grid-template-rows: auto auto;
     }
-    .logo{
-        height: 3vh;
+    .right-top{
+        grid-template-rows: none;
+        grid-template-columns: 60% 40%;
+    }
+    .title{
+        background-size: 50%;
     }
 
 }
