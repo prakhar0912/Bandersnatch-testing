@@ -187,5 +187,8 @@ body {
     .title{
         background-size: 50%;
     }
+    .terminal{
+        padding: 60px 40px;
+    }
 
 }
