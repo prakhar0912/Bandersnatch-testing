@@ -69,7 +69,8 @@ function clear() {
 
 
 let term = document.querySelector(".terminal");
-term.addEventListener("click", () => {
+let bezel = document.querySelector("#bezel");
+bezel.addEventListener("click", () => {
     let active = document.querySelector(".active")
     if (active.id == "input") {
         active.focus();

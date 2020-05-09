@@ -22,11 +22,13 @@ key.addEventListener("click", () => {
     key.classList.toggle("off");
     change = true;
     setTimeout(() => {
-        crt.classList.toggle("off");
-        crtContainer.classList.toggle("turn-on");
+        crt.classList.toggle("turn-on");
+        bezel.classList.toggle("bezelon")
         change = false;
         termi.innerHTML = "";
-        terminalInit();
+        setTimeout(() => {
+            terminalInit();
+        }, 600);
     }, 400)
 
 })
