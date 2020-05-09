@@ -28,7 +28,7 @@ key.addEventListener("click", () => {
         termi.innerHTML = "";
         setTimeout(() => {
             terminalInit();
-        }, 600);
+        }, 1300);
     }, 400)
 
 })
