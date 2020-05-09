@@ -172,9 +172,13 @@ body {
 
 
 @media(max-width: 800px){
+    body{
+        overflow: hidden;
+    }
     #monitor{
         height: calc(var(--vh, 1vh) * 100);
         grid-template-areas: "main" "main" "main" "switch";
+        overflow: hidden;
     }
     .speaker-logo{
         display: none;
