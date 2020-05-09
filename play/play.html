@@ -10,8 +10,117 @@
             position: relative;
             margin: 0;
             padding: 0;
+            min-height: 100vh;
             height: 100vh;
             width: 100vw;
+            overflow: hidden;
+        }
+
+        #monitor {
+            position: absolute;
+            display: grid;
+            height: 100vh;
+            width: 100vw;
+            grid-template-areas: "main main switch""main main switch""main main speaker";
+
+        }
+
+        .right-top {
+            position: relative;
+            grid-area: switch;
+            display: grid;
+            grid-template-rows: auto auto;
+            width: 100%;
+            background: #2E2E2E url("./img/Panel Base.png") no-repeat no-repeat;
+            background-position: center;
+            background-size: 100% 100%;
+        }
+
+        .sticker {
+            position: relative;
+            background: transparent url("./img/Sticker.svg") no-repeat no-repeat;
+            background-size: 80% 80%;
+            background-position: center;
+        }
+
+        .title {
+            height: 100%;
+            position: relative;
+            background: transparent url('./img/Place Holder Logo.svg') no-repeat no-repeat;
+            background-size: 75% 75%;
+            background-position: center;
+            z-index: 1;
+        }
+
+        .switch {
+            position: relative;
+            background: transparent url("./img/Knob.svg") no-repeat no-repeat;
+            background-size: 80% 80%;
+            background-position: center;
+        }
+
+        .speaker-logo {
+            position: relative;
+            grid-area: speaker;
+            background-color: #2E2E2E;
+            display: grid;
+            grid-template-rows: 80% 20%;
+        }
+
+        .speaker {
+            position: relative;
+            background: transparent url("./img/Speaker Grill.png") no-repeat no-repeat;
+            background-size: 90% 90%;
+            background-position: center;
+        }
+
+        .logo {
+            position: relative;
+            background: transparent url("./img/DSC-Logo.png") no-repeat no-repeat;
+            background-position: center;
+            background-size: 30% 50%;
+        }
+
+        #bezel {
+            position: relative;
+            grid-area: main;
+            overflow-y: auto;
+            overflow-x: hidden;
+            width: 100%;
+            height: 100%;
+            /* border: 30px solid transparent; */
+            border-image-source: url("./img/CRT_SCREEN.png");
+            border-image-outset: 0;
+            border-image-slice: 30 fill;
+        }
+
+        /* #bezel {
+            position: absolute;
+            z-index: 0;
+            height: 89%;
+            width: 90%;
+            
+        } */
+        #crt {
+            position: relative;
+            height: 87%;
+            width: 91%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            /* border-top-left-radius: 100px; */
+            border-radius: 40px;
+            background-color: #05321e;
+            /* background-color: red; */
+            overflow: hidden;
+
+        }
+
+        .terminal {
+            /* padding: 0 50px;open  */
+            height: 100%;
+            overflow-y: auto;
             overflow-x: hidden;
         }
     </style>
@@ -21,7 +130,22 @@
 <body>
     <!-- the actual device -->
     <div id="monitor">
-        <!-- the rounded edge near the glass -->
+        <div class="right-top">
+            <div class="sticker">
+                <div class="title"></div>
+            </div>
+            <div class="switch">
+            </div>
+        </div>
+        <div class="speaker-logo">
+            <div class="speaker">
+
+            </div>
+            <div class="logo">
+
+            </div>
+        </div>
+        <!-- <div class="bezel"> -->
         <div id="bezel">
             <!-- the overlay and horizontal pattern -->
             <div id="crt" class="off">
@@ -35,6 +159,8 @@
                 </div>
             </div>
         </div>
+        <!-- </div> -->
+
     </div>
     <script src="https://unpkg.com/compromise@latest/builds/compromise.min.js"></script>
     <script src="../terminal/terminalMine.js"></script>

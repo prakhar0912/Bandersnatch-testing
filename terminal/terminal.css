@@ -3,23 +3,21 @@
 
 
 :root{
-    --color: #5bf870;;
+    --color: #5bf870;
     --screen: #05321e;
 }
 
 
-body{
-    background-color: var(--screen);
-}
-
 #crt:before {
     content: " ";
+    padding: 50px 0;
     display: block;
     position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
+    height: 100%;
     background: linear-gradient(
         to bottom,
         rgba(18, 16, 16, 0) 50%,
@@ -104,23 +102,35 @@ body{
         rgba(255, 255, 255, 0.2) 10%,
         rgba(0, 0, 0, 0.1) 100%
     );
-    opacity: 0.1;
+    opacity: 0;
     position: absolute;
     bottom: 100%;
-    animation: scanline 5s linear infinite;
+    animation: scanline 7s linear infinite;
+
 }
 @keyframes scanline {
     0% {
-        bottom: 100%;
+      opacity: 0;
+      bottom: 100%;
     }
-    80% {
-        bottom: 100%;
+    19%{
+      opacity: 0;
+    }
+    20%{
+      opacity: 0.1;
+      bottom: 90%;
     }
     100% {
-        bottom: 0%;
+      opacity: 0.1;
+      bottom: 0%;
     }
 }
 
+
+
+.typer{
+  width: 90%;
+}
 
 .terminal {
     font-family: "VT323", monospace;
@@ -133,6 +143,17 @@ body{
     text-transform: uppercase;
     animation: textShadow 4s infinite;
     width: 90%;
+    position: absolute;
+    padding: 0 50px;
+}
+
+#crt{
+  box-sizing: border-box;
+  padding: 50px 0;
+}
+
+::-webkit-scrollbar{
+  opacity: 0;
 }
 
 
@@ -172,6 +193,4 @@ body{
 		opacity: 1;
 	}
 }
-.typer{
-    visibility: visible;
-}
+

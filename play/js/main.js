@@ -304,16 +304,6 @@ let nounMaster = () => {
     }
     printToTerminal("random user input to be programmed", "error")
     resetForNewInput();
-
-
-    // for (let i = 0; i < userIntent.length; i++) {
-    //     for (let j = 0; j < option1.length; j++) {
-    //         if (userIntent[i] == option1[j]) {
-    //             output("1 : chosen");
-    //         }
-    //     }
-
-    // }
 }
 
 

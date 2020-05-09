@@ -6,6 +6,7 @@ async function input() {
                 event.preventDefault();
                 let result = event.target.textContent;
                 input.classList.remove("active")
+                input.removeAttribute("contenteditable");
                 resolve(result);
             }
         };
@@ -18,6 +19,8 @@ async function input() {
         input.setAttribute("spellcheck", false);
         input.addEventListener("keydown", onKeyDown);
         terminal.appendChild(input);
+        terminal.scrollTop = terminal.scrollHeight;
+
         input.focus();
     });
 }
@@ -43,9 +46,10 @@ async function type(text) {
         char.classList.add("char")
         char.innerHTML = queue.shift();
         typer.appendChild(char);
-        window.scrollTo(0, document.body.scrollHeight);
 
-        await pause(0.02);
+        container.scrollTop = container.scrollHeight;
+
+        await pause(0.01);
     }
     if (text.length == 1) {
         await pause(1.00);
@@ -60,7 +64,20 @@ function clear() {
 }
 
 
+
+
+let term = document.querySelector(".terminal");
+term.addEventListener("click", () => {
+    let active = document.querySelector(".active")
+    if (active.id == "input") {
+        active.focus();
+    }
+})
+
+
 function newline() {
     let br = document.createElement("br");
     document.querySelector('.terminal').appendChild(br);
+    term.scrollTop = term.scrollHeight;
+
 }
