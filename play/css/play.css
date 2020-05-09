@@ -38,8 +38,8 @@ body {
 .title {
     height: 100%;
     position: relative;
-    background: transparent url('../img/Place Holder Logo.svg') no-repeat no-repeat;
-    background-size: 75% 75%;
+    background: transparent url('../img/logo.png') no-repeat no-repeat;
+    background-size: 55% 25%;
     background-position: center;
     z-index: 1;
 }
