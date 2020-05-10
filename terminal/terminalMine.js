@@ -84,7 +84,8 @@ bezel.addEventListener("click", () => {
 })
 
 
-function newline() {
+async function newline() {
+
     let br = document.createElement("br");
     document.querySelector('.terminal').appendChild(br);
     term.scrollTop = term.scrollHeight;

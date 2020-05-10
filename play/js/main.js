@@ -150,7 +150,7 @@ let chooseOption = (data) => {
         })
         .catch(error => console.log('error', error));
 }
-play();
+// play();
 
 
 
@@ -170,18 +170,18 @@ let optionsIntent = () => {
 
 let printToTerminal = async (text, option) => {
     if (option == "desc") {
-        newline();
+        await newline();
         await type(text);
-        newline();
+        await newline();
         await type("What would you do?");
-        newline();
+        await newline();
         input().then((input) => {
             processInput(input);
         })
     }
     else {
         await type(text);
-        newline();
+        await newline();
         await input().then((res) => {
             processInput(res);
         })
