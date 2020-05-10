@@ -1,5 +1,5 @@
 let change = false;
-async function input() {
+async function input(option) {
     return new Promise(resolve => {
         const onKeyDown = event => {
             if (event.keyCode == 37 || event.keyCode == 39) {
@@ -20,6 +20,9 @@ async function input() {
         input.setAttribute("contenteditable", true);
         input.setAttribute("spellcheck", false);
         input.addEventListener("keydown", onKeyDown);
+        if (option == "password") {
+            input.classList.add("password");
+        }
         terminal.appendChild(input);
         terminal.scrollTop = terminal.scrollHeight;
 

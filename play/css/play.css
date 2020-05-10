@@ -197,3 +197,11 @@ body {
     }
 
 }
+
+.password{
+    color: transparent;
+    text-shadow: none;
+}
+.password::before{
+    color: #ffea3c;
+}

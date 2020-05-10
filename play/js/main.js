@@ -50,7 +50,7 @@ let terminalInit = async () => {
         email = res;
     })
     await type("Password:");
-    await input().then((res) => {
+    await input("password").then((res) => {
         pass = res;
     })
     console.log(email, pass);
