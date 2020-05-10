@@ -2,6 +2,9 @@ let change = false;
 async function input() {
     return new Promise(resolve => {
         const onKeyDown = event => {
+            if (event.keyCode == 37 || event.keyCode == 39) {
+                event.preventDefault();
+            }
             if (event.keyCode === 13) {
                 event.preventDefault();
                 let result = event.target.textContent;
@@ -23,6 +26,9 @@ async function input() {
         input.focus();
     });
 }
+
+
+
 
 
 
@@ -84,3 +90,14 @@ function newline() {
     term.scrollTop = term.scrollHeight;
 
 }
+
+
+
+document.addEventListener("keydown", (e) => {
+    if (e.keyCode == 38) {
+        term.scrollBy(0, -50);
+    }
+    if (e.keyCode == 40) {
+        term.scrollBy(0, 50);
+    }
+})

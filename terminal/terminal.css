@@ -133,16 +133,13 @@
     text-transform: uppercase;
     color: var(--color);
     font-size: 1.5rem;
-    line-height: 1.8rem;
+    line-height: 2rem;
     width: 100%;
     position: relative;
     text-shadow: 1px 1px 10px var(--color-light);
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
-/* ::-webkit-scrollbar{
-  opacity: 0;
-} */
 
 
 #input {
