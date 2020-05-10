@@ -42,7 +42,7 @@ key.addEventListener("click", () => {
 
 let terminalInit = async () => {
 
-    let email;
+    let email = "";
     let pass;
     await type("Login to play Bandersnatch!");
     await type("Email:");
@@ -53,6 +53,8 @@ let terminalInit = async () => {
     await input("password").then((res) => {
         pass = res;
     })
+    email = email.toLowerCase();
+    pass = pass.toLowerCase();
     console.log(email, pass);
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
