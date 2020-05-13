@@ -19,7 +19,9 @@ let crtContainer = document.querySelector(".crt-container");
 let termi = document.querySelector(".terminal");
 let shadow = document.querySelector(".shadow")
 
-key.addEventListener("click", () => {
+
+let toggle = () => {
+    key.removeEventListener("click", toggle);
     key.classList.toggle("off");
     crt.classList.toggle("turned-off")
     change = true;
@@ -30,11 +32,12 @@ key.addEventListener("click", () => {
         termi.innerHTML = "";
         setTimeout(() => {
             terminalInit();
-        }, 1300);
+            key.addEventListener("click", toggle);
+        }, 900);
     }, 400)
+}
 
-})
-
+key.addEventListener("click", toggle)
 
 
 

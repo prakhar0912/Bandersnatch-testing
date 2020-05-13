@@ -45,21 +45,28 @@ body {
 
 .switch-container{
     position: relative;
-    overflow: hidden;
+    overflow: hidden !important;
+    transform: translateZ(0);
+}
+
+.comeon{
+    height: 80%;
+    width: 80%;
+    position: relative;
+    overflow: hidden !important;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
 
 
-
-.switch {
-    height: 100%;
-    width: 100%;
+.switch{
     position: absolute;
-    background: transparent url("../img/Knob.svg") no-repeat no-repeat;
-    background-size: 80% 80%;
-    background-position: center;
-    transition: transform 0.7s;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.7s ease-out;
     transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
-    
+    transform-origin: center;
 }
 
 .switch:not(.off){
@@ -186,6 +193,7 @@ body {
 
 @media(max-width: 800px){
     body{
+        height: 100vh;
         height: calc(var(--vh, 1vh) * 100);
     }
     #monitor{
@@ -201,6 +209,9 @@ body {
     }
     .title{
         background-size: 50%;
+    }
+    .terminal{
+        padding: 60px;
     }
 
 }
