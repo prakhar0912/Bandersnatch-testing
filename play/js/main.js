@@ -18,7 +18,7 @@ let crt = document.querySelector("#crt");
 let crtContainer = document.querySelector(".crt-container");
 let termi = document.querySelector(".terminal");
 let shadow = document.querySelector(".shadow")
-
+let onOrOff = 0;
 
 let toggle = () => {
     key.removeEventListener("click", toggle);
@@ -26,15 +26,17 @@ let toggle = () => {
     key.classList.toggle("off");
     crt.classList.toggle("turned-off")
     change = true;
+    onOrOff++;
     setTimeout(() => {
         crt.classList.toggle("turned-on");
         shadow.classList.toggle("shadow-on")
         change = false;
         termi.innerHTML = "";
         setTimeout(() => {
-            terminalInit();
+            if (onOrOff % 2 == 1) {
+                terminalInit();
+            }
             key.addEventListener("click", toggle);
-            termi.addEventListener("click", inputFocus)
         }, 900);
     }, 400)
 }
