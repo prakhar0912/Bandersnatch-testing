@@ -22,6 +22,7 @@ let shadow = document.querySelector(".shadow")
 
 let toggle = () => {
     key.removeEventListener("click", toggle);
+    termi.removeEventListener("click", inputFocus)
     key.classList.toggle("off");
     crt.classList.toggle("turned-off")
     change = true;
@@ -33,6 +34,7 @@ let toggle = () => {
         setTimeout(() => {
             terminalInit();
             key.addEventListener("click", toggle);
+            termi.addEventListener("click", inputFocus)
         }, 900);
     }, 400)
 }

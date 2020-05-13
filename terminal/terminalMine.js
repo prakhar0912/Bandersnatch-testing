@@ -95,11 +95,9 @@ term.addEventListener("click", inputFocus);
 
 
 async function newline() {
-
     let br = document.createElement("br");
     document.querySelector('.terminal').appendChild(br);
     term.scrollTop = term.scrollHeight;
-
 }
 
 
