@@ -79,12 +79,19 @@ function clear() {
 
 let term = document.querySelector(".terminal");
 let bezel = document.querySelector(".bezel");
-term.addEventListener("click", () => {
+
+let inputFocus = () => {
     let active = document.querySelector(".active")
-    if (active.id == "input") {
-        active.focus();
+    if (document.querySelector(".shadow-on") != null) {
+        if (active.id == "input") {
+            active.focus();
+        }
     }
-})
+
+}
+
+term.addEventListener("click", inputFocus);
+
 
 
 async function newline() {
