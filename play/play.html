@@ -16,7 +16,10 @@
             <div class="sticker">
                 <div class="title"></div>
             </div>
-            <div class="switch off">
+            <div class="switch-container">
+                <div class="switch off">
+
+                </div>
             </div>
         </div>
         <div class="speaker-logo">
@@ -27,25 +30,18 @@
 
             </div>
         </div>
-        <!-- <div class="bezel"> -->
-        <div id="bezel" class="bezel">
-            <div class="shadow">
-                <div class="crt-container turn-off">
-                    <div id="crt" class="crt">
-                        <!-- slowly moving scanline -->
-                        <div class="scanline">
+        <div class="screen">
+            <div class="bezel"></div>
+            <div class="shadow"></div>
+            <div class="crt-container">
+                <div id="crt" class="crt turned-off">
+                    <div class="scanline"></div>
+                    <div class="terminal">
 
-                        </div>
-                        <!-- the input and output -->
-                        <div class="terminal">
-
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- </div> -->
-
     </div>
     <script>
         nice = window.innerHeight * 0.01;
@@ -57,6 +53,11 @@
     <script src="./js/replacer.js"></script>
     <script src="./js/sentenceClass.js"></script>
     <script src="./js/main.js"></script>
+    <script>
+        document.querySelector(".terminal").addEventListener("click", () => {
+            console.log("terminal")
+        })
+    </script>
 </body>
 
 </html>

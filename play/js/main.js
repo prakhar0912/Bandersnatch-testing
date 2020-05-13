@@ -17,13 +17,15 @@ let key = document.querySelector(".switch");
 let crt = document.querySelector("#crt");
 let crtContainer = document.querySelector(".crt-container");
 let termi = document.querySelector(".terminal");
+let shadow = document.querySelector(".shadow")
 
 key.addEventListener("click", () => {
     key.classList.toggle("off");
+    crt.classList.toggle("turned-off")
     change = true;
     setTimeout(() => {
-        crt.classList.toggle("turn-on");
-        bezel.classList.toggle("bezelon")
+        crt.classList.toggle("turned-on");
+        shadow.classList.toggle("shadow-on")
         change = false;
         termi.innerHTML = "";
         setTimeout(() => {

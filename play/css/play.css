@@ -2,17 +2,16 @@ body {
     position: relative;
     margin: 0;
     padding: 0;
-    min-height: 100vh;
     height: 100vh;
     width: 100vw;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 #monitor {
     position: relative;
     display: grid;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     grid-template-areas: "main main main switch""main main main switch""main main main speaker";
 
 }
@@ -44,8 +43,17 @@ body {
     z-index: 1;
 }
 
-.switch {
+.switch-container{
     position: relative;
+    overflow: hidden;
+}
+
+
+
+.switch {
+    height: 100%;
+    width: 100%;
+    position: absolute;
     background: transparent url("../img/Knob.svg") no-repeat no-repeat;
     background-size: 80% 80%;
     background-position: center;
@@ -57,8 +65,6 @@ body {
 .switch:not(.off){
     transform: rotate(-80deg);
 }
-
-
 
 
 .speaker-logo {
@@ -83,65 +89,72 @@ body {
     background-size: 30% 50%;
 }
 
-.bezel {
+
+
+.screen{
     position: relative;
     grid-area: main;
-    overflow-y: auto;
-    overflow-x: hidden;
-    width: 100%;
     height: 100%;
+    width: 100%;
+}
+.bezel{
+    position: absolute;
+    height: 100%;
+    width: 100%;
     background: url("../img/bezel.png") no-repeat no-repeat;
-    background-color: black;
+    background-color: transparent;
     background-position: center;
     background-size: 100% 100.4%;
-}
-
-.bezelon{
-    background-color: transparent;
+    z-index: 3;
+    pointer-events: none;
 }
 
 .shadow{
-    position: relative;
+    position: absolute;
     height: 100%;
     width: 100%;
-    background: transparent url("../img/shadow.png") no-repeat no-repeat;
+    background: url("../img/shadow.png") no-repeat no-repeat;
+    background-color: black;
     background-position: center;
     background-size: 100% 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.shadow-on{
+    background-color: transparent;
 }
 
 .crt-container{
     position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 0;
+}
+.crt{
+    position: relative;
     height: 100%;
     width: 100%;
-    background-color: transparent;
-    z-index: -1;
+    opacity: 1;
+    transition: opacity 0.7s;
 }
-
-
-.terminal {
+.terminal{
+    position: relative;
     box-sizing: border-box;
     height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding: 120px;
-}       
-
-
-.crt-container{
-    opacity: 1;
-    background-color: #242424;
+    width: 100%;
+    padding: 100px;
+    overflow: auto;
 }
 
-.crt{
-    opacity: 0;
-    z-index: 1;
-    transition: opacity 0.6s;
-}
-
-.turn-on{
-    opacity: 1;
-    animation: turnOff 0.6s ease-in-out;
+.turned-on{
+    animation: turnOff 0.4s ease-in-out;
     animation-direction: reverse;
+}
+
+.turned-off{
+    opacity: 0;
 }
 
 
@@ -173,12 +186,10 @@ body {
 
 @media(max-width: 800px){
     body{
-        overflow: hidden;
+        height: calc(var(--vh, 1vh) * 100);
     }
     #monitor{
-        height: calc(var(--vh, 1vh) * 100);
         grid-template-areas: "main" "main" "main" "switch";
-        overflow: hidden;
     }
     .speaker-logo{
         display: none;
@@ -190,10 +201,6 @@ body {
     }
     .title{
         background-size: 50%;
-    }
-    .terminal{
-        padding: 60px 40px;
-        padding-bottom: 200px;
     }
 
 }
