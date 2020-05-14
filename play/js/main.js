@@ -22,7 +22,6 @@ let onOrOff = 0;
 
 let toggle = () => {
     key.removeEventListener("click", toggle);
-    termi.removeEventListener("click", inputFocus)
     key.classList.toggle("off");
     crt.classList.toggle("turned-off")
     change = true;
