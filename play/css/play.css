@@ -1,3 +1,9 @@
+*{
+    box-sizing: border-box;
+
+}
+
+
 body {
     position: relative;
     margin: 0;
@@ -162,6 +168,55 @@ body {
 
 .turned-off{
     opacity: 0;
+}
+
+
+
+.container{
+    position: relative;
+    width: 80%;
+    margin: 100px auto;
+    text-align: center;
+    animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+
+
+.game-title{
+    position: relative;
+    font-size: 10rem;
+    margin-bottom: 200px;
+    
+}
+
+.button{
+    border: 2px solid #ffea3c;
+    color: #ffea3c;
+    width: 200px;
+    margin: 0 auto;
+    padding: 7px 0;
+    margin-bottom: 50px;
+    cursor: pointer;
+    transition: 0.2s;
+    letter-spacing: 3px;
+}
+
+.button:hover{
+    background-color: #ffea3c;
+    color: #2E2E2E;
+    box-shadow: 0 0 5px #ffea3c,
+                0 0 25px #ffea3c,
+                0 0 50px #ffea3c,
+                0 0 100px #ffea3c;
 }
 
 

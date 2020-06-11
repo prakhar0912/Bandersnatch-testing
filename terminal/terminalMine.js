@@ -43,7 +43,7 @@ function pause(s = 1) {
 }
 
 
-async function type(text) {
+async function type(text, speed) {
     let container = document.querySelector(".terminal");
     let queue = text.split("");
     let typer = document.createElement("div");
@@ -59,8 +59,12 @@ async function type(text) {
         if (change == true) {
             return;
         }
-
-        await pause(0.01);
+        if (speed) {
+            await pause(speed);
+        }
+        else {
+            await pause(0.01);
+        }
     }
     if (text.length == 1) {
         await pause(1.00);
