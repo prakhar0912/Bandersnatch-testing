@@ -454,7 +454,7 @@ let processInput = (input) => {
         redirect: 'follow'
     };
 
-    fetch("http://modelscenario.dscvit.com/", requestOptions)
+    fetch("https://modelscenario.dscvit.com/", requestOptions)
         .then(response => response.json())
         .then(result => {
             console.log(result);
