@@ -266,7 +266,31 @@ body {
         background-size: 50%;
     }
     .terminal{
-        padding: 60px;
+        padding: 60px 30px;
+        line-height: 1.1rem!important;
+        font-size: 1rem!important;
+    }
+
+    .container{
+        width: 95%;
+        margin: 10px auto;
+    }
+    .game-title{
+        font-size: 4rem;
+        margin-bottom: 120px;
+        margin-top: 0px;
+    }
+    .typer{
+        /* font-size: 1rem; */
+        /* line-height: 1.1rem; */
+    }
+    #input{
+        /* font-size: 1rem; */
+        /* line-height: 1.1rem; */
+    }
+    .button{
+        width: 50vw;
+        /* font-size: 1.3rem; */
     }
 
 }
