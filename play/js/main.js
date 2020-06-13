@@ -53,7 +53,7 @@ let terminalInit = async () => {
     await type(". . . . . . . .", 0.1);
     await type(". . . . .", 0.1);
     clear();
-    termi.innerHTML = '<div class = "container"><h2 class = "game-title">Continuum</h2><div class = "button" onclick = "login()">Login</div><div class = "button">Sign-up</div></div>';
+    termi.innerHTML = '<div class = "container"><h2 class = "game-title">Continuum</h2><div class = "button" onclick = "login()">Login</div><div class = "button" onclick = "signup()">Sign-up</div></div>';
 }
 
 
@@ -64,7 +64,7 @@ let gameInit = async () => {
     clear();
     await type(". . . . . . . .", 0.1);
     await type(". . . . .", 0.1);
-    clear();
+    clear(); login
     termi.innerHTML = '<div class="container"><h1 class="game-title">Continuum</h1><div class="button" onclick = "play()">New Game</div><div class="button">Load Game</div><div class="button">Options</div></div>';
 }
 
@@ -499,7 +499,80 @@ let resetVariables = () => {
 
 
 
+let signup = async () => {
+    clear();
 
+    let email = "";
+    let pass;
+    let name;
+    await type("Sign Up to play Bandersnatch!");
+    await type("Name:");
+    await input().then((res) => {
+        name = res;
+    })
+    await type("Email:");
+    await input().then((res) => {
+        email = res;
+    })
+    await type("Password:");
+    await input().then((res) => {
+        pass = res;
+    })
+    let loading = setInterval(async () => {
+        await type(". ")
+    }, 500);
+    email = email.toLowerCase();
+    pass = pass.toLowerCase();
+    name = name.toLowerCase();
+    console.log(email, pass, name);
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    let final = {};
+
+    var raw = JSON.stringify({ "name": name, "email": email, "password": pass });
+
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+
+    fetch("https://playscenario.dscvit.com/api/bandersnatch/signup", requestOptions)
+        .then(response => response.json())
+        .then(async (result) => {
+            console.log(result);
+            final = result;
+            clearInterval(loading);
+            if (result["token"]) {
+                await type("Signup successful! Press any key to continue");
+                await input().then(() => {
+                    clear();
+                    terminalInit();
+                })
+            }
+            else {
+                await type(`${result["msg"]}, please enter a key to try again.`);
+                await input().then(() => {
+                    clear();
+                    terminalInit();
+                })
+            }
+
+
+        })
+        .catch(async (error) => {
+            console.log('error', error)
+            clearInterval(loading);
+            await type("There was an error in processing that request, please enter a key to try again.");
+            await input().then(() => {
+                clear();
+                terminalInit();
+            })
+
+
+        });
+}
 
 
 
