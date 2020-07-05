@@ -50,10 +50,29 @@ key.addEventListener("click", toggle)
 
 let terminalInit = async () => {
     clear();
-    await type(". . . . . . . .", 0.1);
-    await type(". . . . .", 0.1);
+    await type(". . . . . . . .", 0.05);
+    await type(". .", 0.05);
     clear();
-    termi.innerHTML = '<div class = "container"><h2 class = "game-title">Continuum</h2><div class = "button" onclick = "login()">Login</div><div class = "button" onclick = "signup()">Sign-up</div></div>';
+
+    termi.innerHTML = `<div class="container"><h2 class="game-title">Continuum</h2><div class="button" onclick="login()">Login</div><div class="button" onclick="signup()">Sign-up</div></div>`
+
+    //     termi.innerHTML = `<div class="container"><h2 class="game-title">
+    //  _____ ______ _   _ _____ _____ _   _ _   _ _   ____  ___
+    //  /  __ \\  __  | \ | |_   _|_   _| \ | | | | | | | |  \/  |
+    //  | /  \\/ |  | |  \| | | |   | | |  \| | | | | | | | .  . |
+    //  | |   | |  | |     | | |   | | |     | | | | | | | |\/| |
+    //  | \\__/\\ \__/ / |\  | | |  _| |_| |\  | |_| | |_| | |  | |
+    //   \\____/\\____/\_| \_/ \_/  \___/\_| \_/\___/ \___/\_|  |_/
+    //     </h2></div>`;
+
+
+    // await type('  _____ ______ _   _ _____ _____ _   _ _   _ _   ____  ___', 0.01, "title")
+    // await type(' /  __ \  __  | \ | |_   _|_   _| \ | | | | | | | |  \/  |', 0.01, "title")
+    // await type(' | /  \/ |  | |  \| | | |   | | |  \| | | | | | | | .  . |', 0.01, "title")
+    // await type(' | |   | |  | |     | | |   | | |     | | | | | | | |\/| |', 0.01, "title")
+    // await type(' | \__/\ \__/ / |\  | | |  _| |_| |\  | |_| | |_| | |  | |', 0.01, "title")
+    // await type('  \____/\____/\_| \_/ \_/  \___/\_| \_/\___/ \___/\_|  |_/', 0.01, "title")
+    // document.querySelector(".container").innerHTML += `<div class="button" onclick="login()">Login</div><div class="button" onclick="signup()">Sign-up</div>`;
 }
 
 
@@ -199,13 +218,13 @@ let chooseOption = (data) => {
 
 
 
-// let optionsIntent = () => {
-//     option1 = new sentence(option1Text)
-//     console.log("Option 1 Intent: ", option1._intent);
-//     option2 = new sentence(option2Text)
-//     console.log("Option 2 Intent: ", option2._intent)
-//     options = [option1, option2];
-// }
+let optionsIntent = () => {
+    option1 = new sentence(option1Text)
+    console.log("Option 1 Intent: ", option1._intent);
+    option2 = new sentence(option2Text)
+    console.log("Option 2 Intent: ", option2._intent)
+    options = [option1, option2];
+}
 
 
 
@@ -248,76 +267,76 @@ let extractInfo = (data) => {
     mainTitle = masterData["misc"]["title"];
     option1Text = masterData["misc"]["left_option"];
     option2Text = masterData["misc"]["right_option"];
-    // nouns = masterData["misc"]["descriptions"];
+    nouns = masterData["misc"]["descriptions"];
     printToTerminal(mainDescription, "desc")
-    // optionsIntent();
+    optionsIntent();
 }
 
 
-// let compare = (arr1, arr2) => {
-//     // console.log(arr1, arr2)
-//     if (arr1.length != arr2.length) {
-//         return false;
-//     }
-//     let masterFlag = 0;
-//     if (arr1.length == 1) {
-//         for (let i = 0; i < arr1.length; i++) {
-//             let flag = 0;
-//             for (let j = 0; j < arr1[i].length; j++) {
-//                 // console.log(arr1[i][j][0], arr2[i][j][0])
-//                 if (arr1[i][j][0] == arr2[i][j][0]) {
-//                     flag++;
-//                 }
-//             }
-//             // console.log(flag, arr1[i])
-//             if (flag == (arr1[i].length)) {
-//                 masterFlag++;
-//             }
-//         }
-//         if (masterFlag == (arr1.length)) {
-//             return true;
-//         }
-//         return false;
-//     }
-//     else {
-//         for (let i = 0; i < arr1.length; i++) {
-//             let flag = 0;
-//             for (let j = 0; j < arr1[i].length; j++) {
-//                 // console.log(arr1[i][j][0], arr2[i][j][0])
-//                 if (arr1[i][j][0] == arr2[i][j][0]) {
-//                     flag++;
-//                 }
-//             }
-//             // console.log(flag, arr1[i])
-//             if (flag == (arr1[i].length)) {
-//                 masterFlag++;
-//             }
-//         }
-//         if (masterFlag == (arr1.length)) {
-//             return true;
-//         }
-//         arr1.reverse();
-//         for (let i = 0; i < arr1.length; i++) {
-//             let flag = 0;
-//             for (let j = 0; j < arr1[i].length; j++) {
-//                 // console.log(arr1[i][j][0], arr2[i][j][0])
-//                 if (arr1[i][j][0] == arr2[i][j][0]) {
-//                     flag++;
-//                 }
-//             }
-//             // console.log(flag, arr1[i])
-//             if (flag == (arr1[i].length)) {
-//                 masterFlag++;
-//             }
-//         }
-//         if (masterFlag == (arr1.length)) {
-//             return true;
-//         }
+let compare = (arr1, arr2) => {
+    // console.log(arr1, arr2)
+    if (arr1.length != arr2.length) {
+        return false;
+    }
+    let masterFlag = 0;
+    if (arr1.length == 1) {
+        for (let i = 0; i < arr1.length; i++) {
+            let flag = 0;
+            for (let j = 0; j < arr1[i].length; j++) {
+                // console.log(arr1[i][j][0], arr2[i][j][0])
+                if (arr1[i][j][0] == arr2[i][j][0]) {
+                    flag++;
+                }
+            }
+            // console.log(flag, arr1[i])
+            if (flag == (arr1[i].length)) {
+                masterFlag++;
+            }
+        }
+        if (masterFlag == (arr1.length)) {
+            return true;
+        }
+        return false;
+    }
+    else {
+        for (let i = 0; i < arr1.length; i++) {
+            let flag = 0;
+            for (let j = 0; j < arr1[i].length; j++) {
+                // console.log(arr1[i][j][0], arr2[i][j][0])
+                if (arr1[i][j][0] == arr2[i][j][0]) {
+                    flag++;
+                }
+            }
+            // console.log(flag, arr1[i])
+            if (flag == (arr1[i].length)) {
+                masterFlag++;
+            }
+        }
+        if (masterFlag == (arr1.length)) {
+            return true;
+        }
+        arr1.reverse();
+        for (let i = 0; i < arr1.length; i++) {
+            let flag = 0;
+            for (let j = 0; j < arr1[i].length; j++) {
+                // console.log(arr1[i][j][0], arr2[i][j][0])
+                if (arr1[i][j][0] == arr2[i][j][0]) {
+                    flag++;
+                }
+            }
+            // console.log(flag, arr1[i])
+            if (flag == (arr1[i].length)) {
+                masterFlag++;
+            }
+        }
+        if (masterFlag == (arr1.length)) {
+            return true;
+        }
 
-//         return false;
-//     }
+        return false;
+    }
 
-// }
+}
 
 
 
@@ -338,68 +357,68 @@ let resetForNewInput = () => {
 
 
 
-// let nounMaster = () => {
-//     let presentNoun;
-//     let nounDescs = [];
-//     for (let i = 0; i < userNouns.length; i++) {
-//         presentNoun = false;
-//         for (let ele in nouns) {
-//             if (ele == userNouns[i]) {
-//                 presentNoun = true;
-//                 nounDescs[ele] = nouns[ele];
-//                 break;
-//             }
-//         }
-//         if (!presentNoun) {
-//             printToTerminal(`Noun: "${userNouns[i]}" not present in the Env`, "error");
-//             resetForNewInput();
-//             return;
-//         }
-//     }
-//     if (compare(userIntent._intent, option1._intent)) {
-//         console.log("Option 1 choosen")
-//         chooseOption(0)
-//         return;
-//     }
-//     if (compare(userIntent._intent, option2._intent)) {
-//         console.log("Option 2 choosen")
-//         chooseOption(1)
-//         return;
-//     }
-//     if (userIntent._intent[0][0][0] == "inspect") {
-//         for (let ele in nounDescs) {
-//             if (ele == userNouns[0]) {
-//                 printToTerminal(nounDescs[ele], "inspect")
-//             }
-//         } resetForNewInput();
-//         return;
-//     }
-//     printToTerminal("random user input to be programmed", "error")
-//     resetForNewInput();
-// }
+let nounMaster = () => {
+    let presentNoun;
+    let nounDescs = [];
+    for (let i = 0; i < userNouns.length; i++) {
+        presentNoun = false;
+        for (let ele in nouns) {
+            if (ele == userNouns[i]) {
+                presentNoun = true;
+                nounDescs[ele] = nouns[ele];
+                break;
+            }
+        }
+        if (!presentNoun) {
+            printToTerminal(`Noun: "${userNouns[i]}" not present in the Env`, "error");
+            resetForNewInput();
+            return;
+        }
+    }
+    if (compare(userIntent._intent, option1._intent)) {
+        console.log("Option 1 choosen")
+        chooseOption(0)
+        return;
+    }
+    if (compare(userIntent._intent, option2._intent)) {
+        console.log("Option 2 choosen")
+        chooseOption(1)
+        return;
+    }
+    if (userIntent._intent[0][0][0] == "inspect") {
+        for (let ele in nounDescs) {
+            if (ele == userNouns[0]) {
+                printToTerminal(nounDescs[ele], "inspect")
+            }
+        } resetForNewInput();
+        return;
+    }
+    printToTerminal("random user input to be programmed", "error")
+    resetForNewInput();
+}
 
 
 
 
 
 
-// let validateInput = (intent) => {
-//     // console.log(intent)
-//     if (intent.length == 0 || intent[0].length == 0) {
-//         printToTerminal("I can't be wasting time!(Use a verb to guide your character)", "error");
-//         return false;
-//     }
-//     if (userIntent._hasAnd == true) {
-//         printToTerminal("Gotta take it one action at a time", "error")
-//         return false;
-//     }
-//     if (intent[0][0] == "inspect") {
-//         if (intent.length != 1) {
-//             return false;
-//         }
-//     }
-//     return true;
-// }
+let validateInput = (intent) => {
+    // console.log(intent)
+    if (intent.length == 0 || intent[0].length == 0) {
+        printToTerminal("I can't be wasting time!(Use a verb to guide your character)", "error");
+        return false;
+    }
+    if (userIntent._hasAnd == true) {
+        printToTerminal("Gotta take it one action at a time", "error")
+        return false;
+    }
+    if (intent[0][0] == "inspect") {
+        if (intent.length != 1) {
+            return false;
+        }
+    }
+    return true;
+}
 
 
 
@@ -420,56 +439,64 @@ let nonStory = (content) => {
 
 let processInput = (input) => {
     userInput = input;
-    // userIntent = new sentence(userInput);
-    // console.log("Users Intent: ", userIntent._intent)
-    // if (validateInput(userIntent._intent)) {
-    //     userIntent._intent.forEach(ele => {
-    //         let pushing = "";
-    //         ele.forEach(elem => {
-    //             if (elem[1] == "adj") {
-    //                 pushing += elem[0] + " ";
-    //             }
-    //             if (elem[1] == "noun") {
-    //                 pushing += elem[0];
-    //             }
-    //         })
-    //         userNouns.push(pushing)
-    //     });
-    //     nounMaster();
+    if (option1Text == "all") {
+        chooseOption(0);
+        return;
+    }
+    if (option2Text == "all") {
+        chooseOption(1);
+        return;
+    }
+    userIntent = new sentence(userInput);
+    console.log("Users Intent: ", userIntent._intent)
+    if (validateInput(userIntent._intent)) {
+        userIntent._intent.forEach(ele => {
+            let pushing = "";
+            ele.forEach(elem => {
+                if (elem[1] == "adj") {
+                    pushing += elem[0] + " ";
+                }
+                if (elem[1] == "noun") {
+                    pushing += elem[0];
+                }
+            })
+            userNouns.push(pushing)
+        });
+        nounMaster();
 
-    // }
-    // else {
-    //     resetForNewInput();
-    // }
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-    myHeaders.append("Authorization", sessionStorage.getItem("auth_key"));
+    }
+    else {
+        resetForNewInput();
+    }
+    // var myHeaders = new Headers();
+    // myHeaders.append("Content-Type", "application/json");
+    // myHeaders.append("Authorization", sessionStorage.getItem("auth_key"));
 
-    var raw = JSON.stringify({ "left_option": option1Text, "right_option": option2Text, "user_input": userInput });
+    // var raw = JSON.stringify({ "left_option": option1Text, "right_option": option2Text, "user_input": userInput });
 
-    var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-    };
+    // var requestOptions = {
+    //     method: 'POST',
+    //     headers: myHeaders,
+    //     body: raw,
+    //     redirect: 'follow'
+    // };
 
-    fetch("https://modelscenario.dscvit.com/", requestOptions)
-        .then(response => response.json())
-        .then(result => {
-            console.log(result);
-            resetVariables();
-            resetForNewInput();
-            if (!result["artifacts"]) {
-                console.log("non-story progressing node")
-                nonStory(result);
-            }
-            else {
-                extractInfo(result);
-            }
+    // fetch("https://modelscenario.dscvit.com/", requestOptions)
+    //     .then(response => response.json())
+    //     .then(result => {
+    //         console.log(result);
+    //         resetVariables();
+    //         resetForNewInput();
+    //         if (!result["artifacts"]) {
+    //             console.log("non-story progressing node")
+    //             nonStory(result);
+    //         }
+    //         else {
+    //             extractInfo(result);
+    //         }
 
-        })
-        .catch(error => console.log('error', error));
+    //     })
+    //     .catch(error => console.log('error', error));
 }
 
 

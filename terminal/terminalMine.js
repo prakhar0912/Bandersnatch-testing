@@ -43,8 +43,14 @@ function pause(s = 1) {
 }
 
 
-async function type(text, speed) {
-    let container = document.querySelector(".terminal");
+async function type(text, speed, special = "none") {
+    let container;
+    if (special == "none") {
+        container = document.querySelector(".terminal");
+    }
+    if (special == "title") {
+        container = document.querySelector(".game-title");
+    }
     let queue = text.split("");
     let typer = document.createElement("div");
     typer.classList = "typer active";
