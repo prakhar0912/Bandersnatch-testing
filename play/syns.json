@@ -1,0 +1,585 @@
+[
+    {
+        "Text": "Open the main door",
+        "Action": "Open",
+        "Object": "main door",
+        "Synonyms of Action": [
+            "Enter",
+            "Go into"
+        ]
+    },
+    {
+        "Text": "Attack girl",
+        "Action": "Attack",
+        "Object": "girl",
+        "Synonyms of Action": [
+            "Fight",
+            "assault"
+        ]
+    },
+    {
+        "Text": "Light a Cigarette",
+        "Action": "Light",
+        "Object": "Cigarette",
+        "Synonyms of Action": [
+            "Burn"
+        ]
+    },
+    {
+        "Text": "Ask about Stephen",
+        "Action": "Ask about",
+        "Object": "Stephen",
+        "Synonyms of Action": [
+            "Inquire"
+        ]
+    },
+    {
+        "Text": "Escape",
+        "Action": "Escape"
+    },
+    {
+        "Text": "Go to him",
+        "Action": "Go to",
+        "Object": "him"
+    },
+    {
+        "Text": "Switch on TV",
+        "Action": "Switch on",
+        "Object": "TV",
+        "Synonyms of Action": [
+            "Turn on"
+        ]
+    },
+    {
+        "Text": "Head to the ground floor",
+        "Action": "Head to",
+        "Object": "ground",
+        "Synonyms of Action": [
+            "Go to"
+        ]
+    },
+    {
+        "Text": "Describe the TV",
+        "Action": "Describe",
+        "Object": "TV",
+        "Synonyms of Action": [
+            "Explain"
+        ]
+    },
+    {
+        "Text": "Exit Room",
+        "Action": "Exit",
+        "Object": "Room",
+        "Synonyms of Action": [
+            "Go out of",
+            "Go outside"
+        ]
+    },
+    {
+        "Text": "Turn Right",
+        "Action": "Turn",
+        "Object": "Right"
+    },
+    {
+        "Text": "Enter the gallery",
+        "Action": "Enter",
+        "Object": "gallery",
+        "Synonyms of Action": [
+            "Go into",
+            "Move into"
+        ]
+    },
+    {
+        "Text": "Enter the room",
+        "Action": "Enter",
+        "Object": "room"
+    },
+    {
+        "Text": "Describe window",
+        "Action": "Describe",
+        "Object": "window"
+    },
+    {
+        "Text": "Go downstairs",
+        "Action": "Go",
+        "Object": "downstairs",
+        "Synonyms of Action": [
+            "Move"
+        ]
+    },
+    {
+        "Text": "Close knob",
+        "Action": "Close",
+        "Object": "knob",
+        "Synonyms of Action": [
+            "Turn"
+        ]
+    },
+    {
+        "Text": "Look out the gallery",
+        "Action": "Look out",
+        "Object": "gallery",
+        "Synonyms of Action": [
+            "Look outside"
+        ]
+    },
+    {
+        "Text": "Jump out the window",
+        "Action": "Jump out",
+        "Object": "window",
+        "Synonyms of Action": [
+            "Leap from",
+            "Leap out"
+        ]
+    },
+    {
+        "Text": "Turn on TV",
+        "Action": "Turn on",
+        "Object": "TV",
+        "Synonyms of Action": [
+            "Switch on"
+        ]
+    },
+    {
+        "Text": "Open Drawer",
+        "Action": "Open"
+    },
+    {
+        "Text": "Explore TV Cabinet",
+        "Action": "Explore",
+        "Object": "TV",
+        "Synonyms of Action": [
+            "Describe"
+        ]
+    },
+    {
+        "Text": "Pick up paper",
+        "Action": "Pick up"
+    },
+    {
+        "Text": "Take sleeping pills",
+        "Action": "Take",
+        "Object": "pills",
+        "Synonyms of Action": [
+            "Ingest",
+            "Eat"
+        ]
+    },
+    {
+        "Text": "Answer the question",
+        "Action": "Answer",
+        "Object": "question"
+    },
+    {
+        "Text": "Head South",
+        "Action": "Head",
+        "Synonyms of Action": [
+            "Go to"
+        ]
+    },
+    {
+        "Text": "Force close gas knob",
+        "Action": "Force",
+        "Object": "gas",
+        "Synonyms of Action": [
+            "Forcefully turn",
+            "Forcefully close"
+        ]
+    },
+    {
+        "Text": "Turn the upper dial",
+        "Action": "Turn the",
+        "Object": "upper",
+        "Synonyms of Action": [
+            "Turn"
+        ]
+    },
+    {
+        "Text": "Go north",
+        "Action": "Go",
+        "Synonyms of Action": [
+            "Go to",
+            "Move"
+        ]
+    },
+    {
+        "Text": "Run away",
+        "Action": "Run away",
+        "Synonyms of Action": [
+            "Run",
+            "Flee"
+        ]
+    },
+    {
+        "Text": "Head to the study table.",
+        "Action": "Head to",
+        "Object": "study",
+        "Synonyms of Action": [
+            "Go to",
+            "Move to"
+        ]
+    },
+    {
+        "Text": "Go back",
+        "Action": "Go"
+    },
+    {
+        "Text": "Pick up kitchen knife",
+        "Action": "Pick up",
+        "Object": "kitchen",
+        "Synonyms of Action": [
+            "Pick",
+            "Grab"
+        ]
+    },
+    {
+        "Text": "Turn Left",
+        "Action": "Turn",
+        "Object": "Left",
+        "Synonyms of Action": [
+            "Go"
+        ]
+    },
+    {
+        "Text": "Finish the Dressing",
+        "Action": "Finish",
+        "Object": "Dressing"
+    },
+    {
+        "Text": "Enter living room",
+        "Action": "Enter",
+        "Object": "living room"
+    },
+    {
+        "Text": "Open the book",
+        "Action": "Open",
+        "Object": "book"
+    },
+    {
+        "Text": "Find an exit",
+        "Action": "Find",
+        "Object": "exit",
+        "Synonyms of Action": [
+            "Locate",
+            "Look for"
+        ]
+    },
+    {
+        "Text": "Throw the TV down",
+        "Action": "Throw",
+        "Object": "TV"
+    },
+    {
+        "Text": "Explore Room",
+        "Action": "Explore",
+        "Object": "Room"
+    },
+    {
+        "Text": "Break TV",
+        "Action": "Break",
+        "Object": "TV",
+        "Synonyms of Action": [
+            "Smash",
+            "Destroy"
+        ]
+    },
+    {
+        "Text": "Switch On Tv",
+        "Action": "Switch On",
+        "Object": "Tv"
+    },
+    {
+        "Text": "Walk ahead",
+        "Action": "Walk"
+    },
+    {
+        "Text": "Check the Laptop",
+        "Action": "Check",
+        "Object": "Laptop",
+        "Synonyms of Action": [
+            "Look at",
+            "Check out"
+        ]
+    },
+    {
+        "Text": "Use bed",
+        "Action": "Use bed",
+        "Synonyms of Action": [
+            "Sleep",
+            "Lie down"
+        ]
+    },
+    {
+        "Text": "Look outside the window",
+        "Action": "Look outside",
+        "Object": "window",
+        "Synonyms of Action": [
+            "Look out"
+        ]
+    },
+    {
+        "Text": "Sit on couch",
+        "Action": "Sit on",
+        "Object": "couch",
+        "Synonyms of Action": [
+            "Sit down on"
+        ]
+    },
+    {
+        "Text": "Stab Father",
+        "Action": "Stab Father",
+        "Synonyms of Action": [
+            "Stab father with knife",
+            "Stab him with the knife",
+            "Stab father with kitchen knife",
+            "Stab him with the kitchen knife"
+        ]
+    },
+    {
+        "Text": "Enter the door",
+        "Action": "Enter",
+        "Object": "door",
+        "Synonyms of Action": [
+            "Go inside",
+            "Go into"
+        ]
+    },
+    {
+        "Text": "Pick up knife",
+        "Action": "Pick up",
+        "Object": "knife",
+        "Synonyms of Action": [
+            "Pick"
+        ]
+    },
+    {
+        "Text": "Smash the jug on Dr.Verma's head",
+        "Action": "Smash",
+        "Object": "jug"
+    },
+    {
+        "Text": "Head North",
+        "Action": "Head",
+        "Synonyms of Action": [
+            "Go towards"
+        ]
+    },
+    {
+        "Text": "Clean the notebook again",
+        "Action": "Clean",
+        "Object": "notebook"
+    },
+    {
+        "Text": "Sit down on the couch",
+        "Action": "Sit down",
+        "Object": "couch"
+    },
+    {
+        "Text": "Head to the study table",
+        "Action": "Head to",
+        "Object": "study",
+        "Synonyms of Action": [
+            "Go to",
+            "Go towards",
+            "Move to",
+            "Move towards"
+        ]
+    },
+    {
+        "Text": "Pick up kerosene",
+        "Action": "Pick up",
+        "Object": "kerosene",
+        "Synonyms of Action": [
+            "Pick"
+        ]
+    },
+    {
+        "Text": "Ignore that he called you Stephen",
+        "Action": "Ignore",
+        "Object": "Stephen"
+    },
+    {
+        "Text": "Open drawer",
+        "Action": "Open"
+    },
+    {
+        "Text": "Continue",
+        "Action": "Continue"
+    },
+    {
+        "Text": "Yes",
+        "Action": "Yes"
+    },
+    {
+        "Text": "Head to the living room",
+        "Action": "Head to",
+        "Object": "living room"
+    },
+    {
+        "Text": "Open door",
+        "Action": "Open",
+        "Object": "door"
+    },
+    {
+        "Text": "Take the divorce papers",
+        "Action": "Take",
+        "Object": "divorce"
+    },
+    {
+        "Text": "Pick up gun",
+        "Action": "Pick up",
+        "Object": "gun"
+    },
+    {
+        "Text": "Go upstairs",
+        "Action": "Go",
+        "Object": "upstairs"
+    },
+    {
+        "Text": "Walk back and head downstairs",
+        "Action": "Walk back",
+        "Object": "downstairs"
+    },
+    {
+        "Text": "Head to Daughter's Bedroom",
+        "Action": "Head to",
+        "Object": "Bedroom"
+    },
+    {
+        "Text": "Walk down",
+        "Action": "Walk down"
+    },
+    {
+        "Text": "Search table",
+        "Action": "Search",
+        "Object": "table"
+    },
+    {
+        "Text": "Use bed",
+        "Action": "Use",
+        "Object": "bed"
+    },
+    {
+        "Text": "No"
+    },
+    {
+        "Text": "Open door with key",
+        "Action": "Open",
+        "Object": "door with"
+    },
+    {
+        "Text": "Open south door",
+        "Action": "Open",
+        "Object": "south door"
+    },
+    {
+        "Text": "Run out of the house",
+        "Action": "Run out",
+        "Object": "house"
+    },
+    {
+        "Text": "burn house",
+        "Action": "burn",
+        "Object": "house"
+    },
+    {
+        "Text": "Turn the lower dial",
+        "Action": "Turn the",
+        "Object": "lower"
+    },
+    {
+        "Text": "Hit your hands on the table",
+        "Action": "Hit",
+        "Object": "hands"
+    },
+    {
+        "Text": "Break window",
+        "Action": "Break",
+        "Object": "window"
+    },
+    {
+        "Text": "Pick up the lighter",
+        "Action": "Pick up",
+        "Object": "lighter"
+    },
+    {
+        "Text": "Open Door",
+        "Action": "Open",
+        "Object": "Door"
+    },
+    {
+        "Text": "Ask about Stephen again",
+        "Action": "Ask about",
+        "Object": "Stephen"
+    },
+    {
+        "Text": "Open desk drawer",
+        "Action": "Open",
+        "Object": "desk drawer"
+    },
+    {
+        "Text": "Apologize to the girl",
+        "Action": "Apologize to",
+        "Object": "girl"
+    },
+    {
+        "Text": "Ask him about the script",
+        "Action": "Ask him",
+        "Object": "script"
+    },
+    {
+        "Text": "Light the Matchstick",
+        "Action": "Light",
+        "Object": "Matchstick"
+    },
+    {
+        "Text": "Enter room",
+        "Action": "Enter",
+        "Object": "room"
+    },
+    {
+        "Text": "Walk to the kitchen",
+        "Action": "Walk to",
+        "Object": "kitchen"
+    },
+    {
+        "Text": "Head to the study room",
+        "Action": "Head to",
+        "Object": "study room"
+    },
+    {
+        "Text": "Pick up the picture",
+        "Action": "Pick up",
+        "Object": "picture"
+    },
+    {
+        "Text": "Ask her what she knows",
+        "Action": "Ask her",
+        "Object": "knows"
+    },
+    {
+        "Text": "Light up the lighter",
+        "Action": "Light up",
+        "Object": "lighter"
+    },
+    {
+        "Text": "Open north door",
+        "Action": "Open",
+        "Object": "north door"
+    },
+    {
+        "Text": "Look through window",
+        "Action": "Look through",
+        "Object": "window"
+    },
+    {
+        "Text": "Turn off TV",
+        "Action": "Turn off",
+        "Object": "TV"
+    },
+    {
+        "Text": "Look back at the daugher",
+        "Action": "Look back",
+        "Object": "daugher"
+    }
+]

@@ -13,7 +13,9 @@ async function input(option) {
                 resolve(result);
             }
         };
-        let terminal = document.querySelector(".terminal");
+        let inputDiv = document.querySelector(".insert-here")
+        inputDiv.innerHTML = ""
+        let terminal = document.querySelector(".terminal-inner");
         let input = document.createElement("div");
         input.classList.add("active");
         input.setAttribute("id", "input");
@@ -23,9 +25,8 @@ async function input(option) {
         if (option == "password") {
             input.classList.add("password");
         }
-        terminal.appendChild(input);
+        inputDiv.appendChild(input);
         terminal.scrollTop = terminal.scrollHeight;
-
         input.focus();
     });
 }
@@ -46,7 +47,7 @@ function pause(s = 1) {
 async function type(text, speed, special = "none") {
     let container;
     if (special == "none") {
-        container = document.querySelector(".terminal");
+        container = document.querySelector(".terminal-inner");
     }
     if (special == "title") {
         container = document.querySelector(".game-title");
@@ -81,13 +82,13 @@ async function type(text, speed, special = "none") {
 
 
 function clear() {
-    document.querySelector(".terminal").innerHTML = "";
+    document.querySelector(".terminal-inner").innerHTML = "";
 }
 
 
 
 
-let term = document.querySelector(".terminal");
+let term = document.querySelector(".terminal-inner");
 let bezel = document.querySelector(".bezel");
 
 let inputFocus = () => {
@@ -106,7 +107,7 @@ term.addEventListener("click", inputFocus);
 
 async function newline() {
     let br = document.createElement("br");
-    document.querySelector('.terminal').appendChild(br);
+    document.querySelector('.terminal-inner').appendChild(br);
     term.scrollTop = term.scrollHeight;
 }
 

@@ -11,12 +11,13 @@ let userInput;
 let userIntent;
 let userNouns = [];
 let descs;
+let api = "https://playscenario.dscvit.com/api"
 
 
 let key = document.querySelector(".switch");
 let crt = document.querySelector("#crt");
 let crtContainer = document.querySelector(".crt-container");
-let termi = document.querySelector(".terminal");
+let termi = document.querySelector(".terminal-inner");
 let shadow = document.querySelector(".shadow")
 let onOrOff = 0;
 

@@ -1,51 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./css/play.css">
-    <link rel="stylesheet" href="../terminal/terminal.css">
-</head>
+    <link rel="stylesheet" href="./css/play.css" />
+    <link rel="stylesheet" href="../terminal/terminal.css" />
+  </head>
 
-<body>
+  <body>
     <!-- the actual device -->
     <div id="monitor">
-        <div class="right-top">
-            <div class="sticker">
-                <div class="title"></div>
-            </div>
-            <div class="switch-container">
-                <div class="comeon">
-                    <img src="./img/Knob.svg" alt="" class="switch off">
+      <div class="right-top">
+        <div class="sticker">
+          <div class="title"></div>
+        </div>
+        <div class="switch-container">
+          <div class="comeon">
+            <img src="./img/Knob.svg" alt="" class="switch off" />
+          </div>
+        </div>
+      </div>
+      <div class="speaker-logo">
+        <div class="speaker"></div>
+        <div class="logo"></div>
+      </div>
+      <div class="screen">
+        <div class="bezel"></div>
+        <div class="shadow"></div>
+        <div class="crt-container">
+          <div id="crt" class="crt turned-off">
+            <div class="scanline"></div>
+            <div class="terminal">
+              <div class="terminal-inner"></div>
+              <div class="inputs">
+                <div class="insert-input">
+                  <div class="insert-here"></div>
+                  <img src="../assets/Help Icon.png" alt="" class="hint-icon" />
                 </div>
-
+              </div>
             </div>
+          </div>
         </div>
-        <div class="speaker-logo">
-            <div class="speaker">
-
-            </div>
-            <div class="logo">
-
-            </div>
-        </div>
-        <div class="screen">
-            <div class="bezel"></div>
-            <div class="shadow"></div>
-            <div class="crt-container">
-                <div id="crt" class="crt turned-off">
-                    <div class="scanline"></div>
-                    <div class="terminal">
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
     <script>
-        nice = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--vh', `${nice}px`);
+      nice = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", `${nice}px`);
     </script>
     <script src="https://unpkg.com/compromise@latest/builds/compromise.min.js"></script>
     <script src="../terminal/terminalMine.js"></script>
@@ -53,6 +54,5 @@
     <script src="./js/replacer.js"></script>
     <script src="./js/sentenceClass.js"></script>
     <script src="./js/main.js"></script>
-</body>
-
+  </body>
 </html>

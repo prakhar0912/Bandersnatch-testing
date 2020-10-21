@@ -1,295 +1,298 @@
-*{
-    box-sizing: border-box;
-
+* {
+  box-sizing: border-box;
 }
 
-
 body {
-    position: relative;
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    width: 100vw;
-    /* overflow: hidden; */
+  position: relative;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  /* overflow: hidden; */
 }
 
 #monitor {
-    position: relative;
-    display: grid;
-    height: 100%;
-    width: 100%;
-    grid-template-areas: "main main main switch""main main main switch""main main main speaker";
-
+  position: relative;
+  display: grid;
+  height: 100%;
+  width: 100%;
+  grid-template-areas: "main main main switch" "main main main switch" "main main main speaker";
 }
 
 .right-top {
-    position: relative;
-    grid-area: switch;
-    display: grid;
-    grid-template-rows: auto auto;
-    width: 100%;
-    background: #2E2E2E url("../img/Panel Base.png") no-repeat no-repeat;
-    background-position: center;
-    background-size: 100% 100%;
+  position: relative;
+  grid-area: switch;
+  display: grid;
+  grid-template-rows: auto auto;
+  width: 100%;
+  background: #2e2e2e url("../img/Panel Base.png") no-repeat no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
 }
 
 .sticker {
-    position: relative;
-    background: transparent url("../img/Sticker.svg") no-repeat no-repeat;
-    background-size: 80% 80%;
-    background-position: center;
+  position: relative;
+  background: transparent url("../img/Sticker.svg") no-repeat no-repeat;
+  background-size: 80% 80%;
+  background-position: center;
 }
 
 .title {
-    height: 100%;
-    position: relative;
-    background: transparent url('../img/logo.png') no-repeat no-repeat;
-    background-size: 55% 25%;
-    background-position: center;
-    z-index: 1;
+  height: 100%;
+  position: relative;
+  background: transparent url("../img/logo.png") no-repeat no-repeat;
+  background-size: 55% 25%;
+  background-position: center;
+  z-index: 1;
 }
 
-.switch-container{
-    position: relative;
-    overflow: hidden !important;
-    transform: translateZ(0);
+.switch-container {
+  position: relative;
+  overflow: hidden !important;
+  transform: translateZ(0);
 }
 
-.comeon{
-    height: 80%;
-    width: 80%;
-    position: relative;
-    overflow: hidden !important;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+.comeon {
+  height: 80%;
+  width: 80%;
+  position: relative;
+  overflow: hidden !important;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-
-.switch{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.7s ease-out;
-    transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
-    transform-origin: center;
+.switch {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.7s ease-out;
+  transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+  transform-origin: center;
 }
 
-.switch:not(.off){
-    transform: rotate(-80deg);
+.switch:not(.off) {
+  transform: rotate(-80deg);
 }
-
 
 .speaker-logo {
-    position: relative;
-    grid-area: speaker;
-    background-color: #2E2E2E;
-    display: grid;
-    grid-template-rows: 80% 20%;
+  position: relative;
+  grid-area: speaker;
+  background-color: #2e2e2e;
+  display: grid;
+  grid-template-rows: 80% 20%;
 }
 
 .speaker {
-    position: relative;
-    background: transparent url("../img/Speaker Grill.png") no-repeat no-repeat;
-    background-size: 90% 90%;
-    background-position: center;
+  position: relative;
+  background: transparent url("../img/Speaker Grill.png") no-repeat no-repeat;
+  background-size: 90% 90%;
+  background-position: center;
 }
 
 .logo {
-    position: relative;
-    background: transparent url("../img/DSC-Logo.png") no-repeat no-repeat;
-    background-position: center;
-    background-size: 30% 50%;
+  position: relative;
+  background: transparent url("../img/DSC-Logo.png") no-repeat no-repeat;
+  background-position: center;
+  background-size: 30% 50%;
 }
 
-
-
-.screen{
-    position: relative;
-    grid-area: main;
-    height: 100%;
-    width: 100%;
+.screen {
+  position: relative;
+  grid-area: main;
+  height: 100%;
+  width: 100%;
 }
-.bezel{
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background: url("../img/bezel.png") no-repeat no-repeat;
-    background-color: transparent;
-    background-position: center;
-    background-size: 100% 100.4%;
-    z-index: 3;
-    pointer-events: none;
+.bezel {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: url("../img/bezel.png") no-repeat no-repeat;
+  background-color: transparent;
+  background-position: center;
+  background-size: 100% 100.4%;
+  z-index: 3;
+  pointer-events: none;
 }
 
-.shadow{
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background: url("../img/shadow.png") no-repeat no-repeat;
-    background-color: black;
-    background-position: center;
-    background-size: 100% 100%;
-    z-index: 2;
-    pointer-events: none;
+.shadow {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: url("../img/shadow.png") no-repeat no-repeat;
+  background-color: black;
+  background-position: center;
+  background-size: 100% 100%;
+  z-index: 2;
+  pointer-events: none;
 }
 
-.shadow-on{
-    background-color: transparent;
+.shadow-on {
+  background-color: transparent;
 }
 
-.crt-container{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    z-index: 0;
+.crt-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 0;
 }
-.crt{
-    position: relative;
-    height: 100%;
-    width: 100%;
-    opacity: 1;
-    transition: opacity 0.7s;
+.crt {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  opacity: 1;
+  transition: opacity 0.7s;
 }
-.terminal{
-    position: relative;
-    box-sizing: border-box;
-    height: 100%;
-    width: 100%;
-    padding: 100px;
-    overflow: auto;
-}
-
-.turned-on{
-    animation: turnOff 0.4s ease-in-out;
-    animation-direction: reverse;
+.terminal {
+  position: relative;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  padding: 100px;
+  overflow: auto;
 }
 
-.turned-off{
+.turned-on {
+  animation: turnOff 0.4s ease-in-out;
+  animation-direction: reverse;
+}
+
+.turned-off {
+  opacity: 0;
+}
+
+.container {
+  position: relative;
+  width: 80%;
+  margin: 100px auto;
+  text-align: center;
+  animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
     opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-
-
-.container{
-    position: relative;
-    width: 80%;
-    margin: 100px auto;
-    text-align: center;
-    animation: fadeIn 1s ease-in;
+.game-title {
+  position: relative;
+  font-size: 10rem;
+  margin-bottom: 200px;
 }
 
-@keyframes fadeIn{
-    from{
-        opacity: 0;
-    }
-    to{
-        opacity: 1;
-    }
+.button {
+  border: 2px solid #ffea3c;
+  color: #ffea3c;
+  width: 200px;
+  margin: 0 auto;
+  padding: 7px 0;
+  margin-bottom: 50px;
+  cursor: pointer;
+  transition: 0.2s;
+  letter-spacing: 3px;
 }
 
-
-
-.game-title{
-    position: relative;
-    font-size: 10rem;
-    margin-bottom: 200px;
-    
+.button:hover {
+  background-color: #ffea3c;
+  color: #2e2e2e;
+  box-shadow: 0 0 5px #ffea3c, 0 0 25px #ffea3c, 0 0 50px #ffea3c,
+    0 0 100px #ffea3c;
 }
-
-.button{
-    border: 2px solid #ffea3c;
-    color: #ffea3c;
-    width: 200px;
-    margin: 0 auto;
-    padding: 7px 0;
-    margin-bottom: 50px;
-    cursor: pointer;
-    transition: 0.2s;
-    letter-spacing: 3px;
-}
-
-.button:hover{
-    background-color: #ffea3c;
-    color: #2E2E2E;
-    box-shadow: 0 0 5px #ffea3c,
-                0 0 25px #ffea3c,
-                0 0 50px #ffea3c,
-                0 0 100px #ffea3c;
-}
-
 
 @keyframes turnOff {
-	0% {
-		background: #fff !important;
-		transform: scale(1, 1.0) translate3d(0, 0, 0);
-		-webkit-filter: brightness(1);
-        filter: brightness(1);
-	}
-	60% {
-		background: #fff !important;
-		transform: scale(1.05, 0.001) translate3d(0, 0, 0);
-		-webkit-filter: brightness(10);
-		filter: brightness(10);
-	}
-	100% {
-		background: #fff !important;
-		animation-timing-function: ease-out;
-		transform: scale(0, 0.0001) translate3d(0, 0, 0);
-		-webkit-filter: brightness(50);
-        filter: brightness(50);
-    }
-    
+  0% {
+    background: #fff !important;
+    transform: scale(1, 1) translate3d(0, 0, 0);
+    -webkit-filter: brightness(1);
+    filter: brightness(1);
+  }
+  60% {
+    background: #fff !important;
+    transform: scale(1.05, 0.001) translate3d(0, 0, 0);
+    -webkit-filter: brightness(10);
+    filter: brightness(10);
+  }
+  100% {
+    background: #fff !important;
+    animation-timing-function: ease-out;
+    transform: scale(0, 0.0001) translate3d(0, 0, 0);
+    -webkit-filter: brightness(50);
+    filter: brightness(50);
+  }
 }
 
-
-
-
-@media(max-width: 800px){
-    body{
-        height: 100vh;
-        height: calc(var(--vh, 1vh) * 100);
-    }
-    #monitor{
-        grid-template-areas: "main" "main" "main" "switch";
-    }
-    .speaker-logo{
-        display: none;
-        grid-template-rows: auto auto;
-    }
-    .right-top{
-        grid-template-rows: none;
-        grid-template-columns: 60% 40%;
-    }
-    .title{
-        background-size: 50%;
-    }
-    .terminal{
-        padding: 60px 30px;
-        line-height: 1.1rem!important;
-        font-size: 1rem!important;
-    }
-
-    .container{
-        width: 95%;
-        margin: 10px auto;
-    }
-    .game-title{
-        font-size: 4rem;
-        margin-bottom: 120px;
-        margin-top: 0px;
-    }
-    .button{
-        width: 50vw;
-    }
-
+.inputs {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  margin-bottom: 80px;
+  padding: 20px 0;
+  border-top: 2px#ffea3c solid;
 }
 
-.password{
-    color: transparent;
-    text-shadow: none;
+.insert-input {
+  display: grid;
+  grid-template-columns: 80% 20%;
+  align-items: center;
+  width: 90%;
+  margin: auto;
 }
-.password::before{
-    color: #ffea3c;
+
+.help-icon {
+  width: 30px;
+  height: 30px;
+}
+
+@media (max-width: 800px) {
+  body {
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+  }
+  #monitor {
+    grid-template-areas: "main" "main" "main" "switch";
+  }
+  .speaker-logo {
+    display: none;
+    grid-template-rows: auto auto;
+  }
+  .right-top {
+    grid-template-rows: none;
+    grid-template-columns: 60% 40%;
+  }
+  .title {
+    background-size: 50%;
+  }
+  .terminal {
+    padding: 60px 30px;
+    line-height: 1.1rem !important;
+    font-size: 1rem !important;
+  }
+
+  .container {
+    width: 95%;
+    margin: 10px auto;
+  }
+  .game-title {
+    font-size: 4rem;
+    margin-bottom: 120px;
+    margin-top: 0px;
+  }
+  .button {
+    width: 50vw;
+  }
+}
+
+.password {
+  color: transparent;
+  text-shadow: none;
+}
+.password::before {
+  color: #ffea3c;
 }
