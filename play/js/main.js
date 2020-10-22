@@ -11,7 +11,7 @@ let userInput;
 let userIntent;
 let userNouns = [];
 let descs;
-let api = "https://playscenario.dscvit.com/api"
+let api = "http://localhost:1729/api"
 
 
 let key = document.querySelector(".switch");
@@ -124,7 +124,7 @@ let login = async () => {
         redirect: 'follow'
     };
 
-    fetch("https://playscenario.dscvit.com/api/bandersnatch/signin", requestOptions)
+    fetch(api + "/bandersnatch/signin", requestOptions)
         .then(response => response.json())
         .then(async (result) => {
             console.log(result)
@@ -165,6 +165,8 @@ let login = async () => {
 
 
 
+
+
 let play = () => {
     clear();
     var myHeaders = new Headers();
@@ -180,13 +182,61 @@ let play = () => {
         redirect: 'follow'
     };
 
-    fetch("https://playscenario.dscvit.com/api/bandersnatch/play", requestOptions)
+    fetch(api + "/bandersnatch/play", requestOptions)
         .then(response => response.json())
         .then(result => {
             extractInfo(result);
         })
         .catch(error => console.log('error', error));
 }
+
+let hintDiv = document.querySelector('.hint')
+let removeHint = () => {
+    document.querySelector('.terminal').removeEventListener('click', removeHint);
+    hintDiv.classList.remove('show-hint')
+}
+
+
+let renderHint = (data) => {
+    hintDiv.innerHTML = data;
+    hintDiv.classList.add('show-hint')
+    document.querySelector('.terminal').addEventListener('click', removeHint);
+}
+
+
+let getHint = () => {
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", sessionStorage.getItem('auth_key'));
+    let ok = true;
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        redirect: 'follow'
+    };
+
+    fetch(api + "/bandersnatch/hint", requestOptions)
+        .then(response => {
+            if (!response.ok) {
+                ok = false
+            }
+            return response.json()
+        })
+        .then(result => {
+            if (!ok) {
+                throw result
+            }
+            console.log(result)
+            renderHint(result["hint"])
+        })
+        .catch(error => {
+            console.log('error', error)
+            renderHint(error["msg"])
+        });
+}
+
+
+
+document.querySelector('.hint-icon').addEventListener('click', getHint);
 
 let chooseOption = (data) => {
     var myHeaders = new Headers();
@@ -203,7 +253,7 @@ let chooseOption = (data) => {
         redirect: 'follow'
     };
 
-    fetch("https://playscenario.dscvit.com/api/bandersnatch/play", requestOptions)
+    fetch(api + "/bandersnatch/play", requestOptions)
         .then(response => response.json())
         .then(result => {
             console.log(result)
@@ -566,7 +616,7 @@ let signup = async () => {
         redirect: 'follow'
     };
 
-    fetch("https://playscenario.dscvit.com/api/bandersnatch/signup", requestOptions)
+    fetch(api + "/bandersnatch/signup", requestOptions)
         .then(response => response.json())
         .then(async (result) => {
             console.log(result);

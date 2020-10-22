@@ -239,15 +239,33 @@ body {
 
 .insert-input {
   display: grid;
-  grid-template-columns: 80% 20%;
+  grid-template-columns: 85% 15%;
   align-items: center;
   width: 90%;
   margin: auto;
 }
 
-.help-icon {
-  width: 30px;
-  height: 30px;
+.hint {
+  position: absolute;
+  z-index: 10;
+  bottom: 120px;
+  transform: translateX(-80%);
+  border: 2px #fff27d solid;
+  padding: 5px 10px;
+  background-color: #2e2e2e;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease-in;
+}
+
+.show-hint {
+  opacity: 1;
+}
+
+.hint-icon {
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
 }
 
 @media (max-width: 800px) {
@@ -273,6 +291,34 @@ body {
     padding: 60px 30px;
     line-height: 1.1rem !important;
     font-size: 1rem !important;
+  }
+
+  .inputs {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin-bottom: 50px;
+    padding: 10px 0;
+    border-top: 2px#ffea3c solid;
+  }
+
+  .insert-input {
+    display: grid;
+    grid-template-columns: 80% 20%;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+  }
+
+  .hint-icon {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
+  .hint {
+    bottom: 60px;
+    transform: translateX(-60%);
   }
 
   .container {

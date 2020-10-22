@@ -2,6 +2,7 @@ let change = false;
 async function input(option) {
     return new Promise(resolve => {
         const onKeyDown = event => {
+            // if (event.keyCode == 8 &&)
             if (event.keyCode == 37 || event.keyCode == 39) {
                 event.preventDefault();
             }
@@ -16,7 +17,7 @@ async function input(option) {
         let inputDiv = document.querySelector(".insert-here")
         inputDiv.innerHTML = ""
         let terminal = document.querySelector(".terminal-inner");
-        let input = document.createElement("div");
+        let input = document.createElement("span");
         input.classList.add("active");
         input.setAttribute("id", "input");
         input.setAttribute("contenteditable", true);
@@ -26,8 +27,8 @@ async function input(option) {
             input.classList.add("password");
         }
         inputDiv.appendChild(input);
-        terminal.scrollTop = terminal.scrollHeight;
         input.focus();
+        terminal.scrollTop = terminal.scrollHeight;
     });
 }
 

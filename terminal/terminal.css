@@ -169,9 +169,11 @@
 }
 
 #input {
+  display: inline-block;
   position: relative;
   caret-color: transparent;
   outline: none;
+  width: 80%;
 }
 /* Puts a blinking square after the content as replacement for caret */
 
