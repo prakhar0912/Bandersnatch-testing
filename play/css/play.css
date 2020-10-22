@@ -235,6 +235,7 @@ body {
   margin-bottom: 80px;
   padding: 20px 0;
   border-top: 2px#ffea3c solid;
+  display: none;
 }
 
 .insert-input {
@@ -341,4 +342,8 @@ body {
 }
 .password::before {
   color: #ffea3c;
+}
+
+.show {
+  display: block;
 }

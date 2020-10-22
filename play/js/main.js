@@ -81,10 +81,11 @@ let terminalInit = async () => {
 
 
 let gameInit = async () => {
+    document.querySelector('.inputs').classList.remove('show');
     clear();
     await type(". . . . . . . .", 0.1);
     await type(". . . . .", 0.1);
-    clear(); login
+    clear();
     termi.innerHTML = '<div class="container"><h1 class="game-title">Continuum</h1><div class="button" onclick = "play()">New Game</div><div class="button">Load Game</div><div class="button">Options</div></div>';
 }
 
@@ -97,6 +98,7 @@ let login = async () => {
 
     let email = "";
     let pass;
+    document.querySelector('.inputs').classList.add('show');
     await type("Login to play Bandersnatch!");
     await type("Email:");
     await input().then((res) => {
@@ -168,6 +170,7 @@ let login = async () => {
 
 
 let play = () => {
+    document.querySelector('.inputs').classList.add('show');
     clear();
     var myHeaders = new Headers();
     myHeaders.append("Authorization", sessionStorage.getItem("auth_key"))
@@ -583,6 +586,7 @@ let signup = async () => {
     let email = "";
     let pass;
     let name;
+    document.querySelector('.inputs').classList.add('show');
     await type("Sign Up to play Bandersnatch!");
     await type("Name:");
     await input().then((res) => {
